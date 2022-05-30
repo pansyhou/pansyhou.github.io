@@ -195,3 +195,21 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+jekyll_compose:
+  default_front_matter:
+    drafts:
+      description:
+      image:
+      category:
+      tags:
+    posts:
+      category: []
+      tags: []
+      pin: false
+      author: pansyhou
+      toc: true
+      comments: true
+      typora-root-url: ../../pansyhou.github.io
+      math: false
+      mermaid: true
