@@ -4,6 +4,8 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-Hi!这里是cs大一在读的pansyhou，目前担任本校Robomaster战队电控组成员。
+HI ！Here is pansyhou ! You can contact me on 1677195845@qq.com
 
-目前已学习java、c
+- :pencil2: Studying CS at DGUT.
+- :briefcase: Working on ACE Intelligent Robotics Lab , fighting for the next season of Robomaster .
+- :writing_hand: Learning C/Java/MySQL.

@@ -23,7 +23,7 @@ timezone: Asia/Shanghai
 
 title: pansyhou                          # the main title
 
-tagline: 欢迎光临pansyhou的个人博客   # it will display as the sub-title
+tagline: 欢迎来到pansyhou的个人博客(?   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   这是由Chirpy主题生成的
