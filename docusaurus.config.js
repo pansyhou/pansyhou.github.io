@@ -5,25 +5,25 @@ const announcementBarContent = `<a href="/typescript-full-stack-technology-trpc"
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: '愧怍的小站',
+  title: 'pansyhou的小站',
   titleDelimiter: '-',
   url: 'https://pansyhou.github.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'pansyhou',
   projectName: 'pansyhou.github.io',
-  tagline: '记录所学知识，领略编程之美',
+  tagline: '初心高于胜负',
   /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
   themeConfig: {
     image: 'img/logo.png',
-    announcementBar: {
-      id: 'announcementBar-3',
-      content: announcementBarContent,
-    },
+    // announcementBar: {
+    //   id: 'announcementBar-3',
+    //   content: announcementBarContent,
+    // },
     metadata: [
       {
         name: 'keywords',
-        content: '愧怍',
+        content: 'pansyhou',
       },
       {
         name: 'keywords',
@@ -42,7 +42,7 @@ const config = {
     navbar: {
       title: '愧怍',
       logo: {
-        alt: '愧怍',
+        alt: 'pansyhou',
         src: 'img/logo.webp',
         srcDark: 'img/logo.webp',
       },
@@ -189,7 +189,7 @@ const config = {
           ],
         },
       ],
-      copyright: `<p><a href="http://beian.miit.gov.cn/" >${beian}</a></p><p>Copyright © 2020 - PRESENT 愧怍 Built with Docusaurus.</p>`,
+      copyright: `<p>Copyright © 2020 - PRESENT pansyhou Built with Docusaurus.</p>`,
     },
     prism: {
       theme: require('prism-react-renderer/themes/vsLight'),
@@ -257,7 +257,7 @@ const config = {
       tagName: 'meta',
       attributes: {
         name: 'description',
-        content: '愧怍的个人博客',
+        content: 'pansyhou的个人博客',
       },
     },
   ],
@@ -299,9 +299,9 @@ const config = {
         path: 'blog',
         routeBasePath: '/',
         editUrl: ({ locale, blogDirPath, blogPath, permalink }) =>
-          `https://github.com/kuizuo/blog/edit/main/${blogDirPath}/${blogPath}`,
+          `https://github.com/pansyhou/pansyhou.github.io/edit/main/${blogDirPath}/${blogPath}`,
         editLocalizedFiles: false,
-        blogDescription: '愧怍的个人博客',
+        blogDescription: 'pansyhou的个人博客',
         blogSidebarCount: 10,
         blogSidebarTitle: '最近更新',
         postsPerPage: 10,
@@ -310,8 +310,8 @@ const config = {
           defaultReadingTime({ content, options: { wordsPerMinute: 300 } }),
         feedOptions: {
           type: 'all',
-          title: '愧怍',
-          copyright: `Copyright © ${new Date().getFullYear()} 愧怍 Built with Docusaurus.<p><a href="http://beian.miit.gov.cn/" class="footer_lin">${beian}</a></p>`,
+          title: 'pansyhou',
+          copyright: `Copyright © ${new Date().getFullYear()} pansyhou Built with Docusaurus.`,
         },
       },
     ],

@@ -13,11 +13,11 @@
     "description": "hero greet"
   },
   "愧怍": {
-    "message": "愧怍",
+    "message": "pansyhou",
     "description": "my name"
   },
   "homepage.hero.text": {
-    "message": "在这里我会分享各类技术栈所遇到问题与解决方案，带你了解最新的技术栈以及实际开发中如何应用，并希望我的开发经历对你有所启发。",
+    "message": "在这里你可以了解到各种乱七八糟的知识大杂烩，比如说来点嵌入式、来点前后端=)、我所遇到问题与解决方案、学习笔记，还能看我碎碎念(bushi。",
     "description": "hero text"
   },
   "homepage.hero.look":{
@@ -25,25 +25,25 @@
     "description": "hero look"
   },
   "hompage.hero.note": {
-    "message": "技术笔记",
+    "message": "学习笔记",
     "description": "Note link label"
   },
   "hompage.hero.project": {
-    "message": "实战项目",
+    "message": "实际项目",
     "description": "Project link label"
   },
-  "hompage.hero.link": {
-    "message": "网址导航",
-    "description": "Link link label"
-  },
+  // "hompage.hero.link": {
+  //   "message": "网址导航",
+  //   "description": "Link link label"
+  // },
   "hompage.hero.idea": {
-    "message": "想法感悟",
+    "message": "碎碎念",
     "description": "Idea label"
   },
-  "homepage.qqgroup": {
-    "message": "QQ 群：5478458",
-    "description": "qq group"
-  },
+  // "homepage.qqgroup": {
+  //   "message": "QQ 群：5478458",
+  //   "description": "qq group"
+  // },
   "自我介绍": {
     "message": "自我介绍",
     "description": "follow me btn text"
