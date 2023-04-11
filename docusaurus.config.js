@@ -7,11 +7,11 @@ const announcementBarContent = `<a href="/typescript-full-stack-technology-trpc"
 const config = {
   title: '愧怍的小站',
   titleDelimiter: '-',
-  url: 'https://kuizuo.cn',
+  url: 'https://pansyhou.github.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
-  organizationName: 'kuizuo',
-  projectName: 'blog',
+  organizationName: 'pansyhou',
+  projectName: 'pansyhou.github.io',
   tagline: '记录所学知识，领略编程之美',
   /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
   themeConfig: {
