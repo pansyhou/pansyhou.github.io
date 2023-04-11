@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[93479],{44975:function(s){s.exports=JSON.parse('{"label":"vuepress","permalink":"/tags/vuepress","allTagsPath":"/tags","count":1}')}}]);

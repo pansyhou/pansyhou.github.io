@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[90397],{21503:function(i){i.exports=JSON.parse('{"label":"gin","permalink":"/docs/tags/gin","allTagsPath":"/docs/tags","count":1,"items":[{"id":"skill/go/try-gin-framework","title":"Gin\u6846\u67b6\u521d\u4f53\u9a8c","description":"\u5b89\u88c5 Gin","permalink":"/docs/try-gin-framework"}]}')}}]);

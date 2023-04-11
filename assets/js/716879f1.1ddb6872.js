@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[5585],{81193:function(a){a.exports=JSON.parse('{"label":"gitalk","permalink":"/tags/gitalk","allTagsPath":"/tags","count":1}')}}]);

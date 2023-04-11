@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[51309],{16928:function(e){e.exports=JSON.parse('{"label":"monorepo","permalink":"/tags/monorepo","allTagsPath":"/tags","count":1}')}}]);

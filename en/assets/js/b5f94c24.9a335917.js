@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[88922],{82189:function(e){e.exports=JSON.parse('{"label":"nest","permalink":"/en/tags/nest","allTagsPath":"/en/tags","count":2}')}}]);

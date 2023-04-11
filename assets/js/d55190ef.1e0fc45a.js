@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[40898],{8346:function(a){a.exports=JSON.parse('{"label":"strapi","permalink":"/tags/strapi","allTagsPath":"/tags","count":2}')}}]);
