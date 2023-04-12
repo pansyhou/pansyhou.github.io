@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[32457],{57680:function(e){e.exports=JSON.parse('{"permalink":"/en/tags/javascript","page":1,"postsPerPage":10,"totalPages":1,"totalCount":8,"blogDescription":"pansyhou\u7684\u4e2a\u4eba\u535a\u5ba2","blogTitle":"Blog"}')}}]);
