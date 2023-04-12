@@ -40,7 +40,7 @@ const config = {
       },
     },
     navbar: {
-      title: '愧怍',
+      title: 'pansyhou',
       logo: {
         alt: 'pansyhou',
         src: 'img/logo.webp',
@@ -53,6 +53,15 @@ const config = {
           position: 'right',
           items: [
             {
+              label: '笔记',
+              to: 'docs/skill/',
+            },
+            {
+              label: '刷题',
+              to: 'docs/oi/',
+            },
+          
+            {
               label: '标签',
               to: 'tags',
             },
@@ -60,44 +69,50 @@ const config = {
               label: '归档',
               to: 'archive',
             },
-            {
-              label: '笔记',
-              to: 'docs/skill/',
-            },
-            {
-              label: '工具推荐',
-              to: 'docs/tools/',
-            },
-            {
-              label: '前端示例',
-              to: 'https://example.kuizuo.cn',
-            },
+            
+            // {
+            //   label: '工具推荐',
+            //   to: 'docs/tools/',
+            // },
+            // {
+            //   label: '前端示例',
+            //   to: 'https://example.kuizuo.cn',
+            // },
           ],
         },
         {
-          label: '工具',
+          label: '嵌入式开发',
           position: 'right',
           items: [
             {
-              label: 'API服务',
-              to: 'https://api.kuizuo.cn',
+              label: 'STM32',
+              to: 'docs/stm32/',
             },
-            {
-              label: 'JS代码还原',
-              to: 'https://js-de-obfuscator.kuizuo.cn',
-            },
-            {
-              label: 'CyberChef加密',
-              to: 'https://cipher.kuizuo.cn',
-            },
-            {
-              label: 'Transform',
-              to: 'https://transform.kuizuo.cn',
-            },
-            {
-              label: '网盘',
-              to: 'https://pan.kuizuo.cn',
-            },
+            // {
+            //   label: 'ESP32',
+            //   to: 'docs/esp32/',
+            // },
+            
+            // {
+            //   label: 'API服务',
+            //   to: 'https://api.kuizuo.cn',
+            // },
+            // {
+            //   label: 'JS代码还原',
+            //   to: 'https://js-de-obfuscator.kuizuo.cn',
+            // },
+            // {
+            //   label: 'CyberChef加密',
+            //   to: 'https://cipher.kuizuo.cn',
+            // },
+            // {
+            //   label: 'Transform',
+            //   to: 'https://transform.kuizuo.cn',
+            // },
+            // {
+            //   label: '网盘',
+            //   to: 'https://pan.kuizuo.cn',
+            // },
           ],
         },
         {
@@ -138,10 +153,10 @@ const config = {
               label: '实战项目',
               to: 'project',
             },
-            {
-              label: '前端示例',
-              to: 'https://example.kuizuo.cn',
-            },
+            // {
+            //   label: '前端示例',
+            //   to: 'https://example.kuizuo.cn',
+            // },
           ],
         },
         {
@@ -153,16 +168,16 @@ const config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/kuizuo',
+              href: 'https://github.com/pansyhou',
             },
-            {
-              label: '掘金',
-              href: 'https://juejin.cn/user/1565318510545901',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discord.gg/M8cVcjDxkz',
-            },
+            // {
+            //   label: '掘金',
+            //   href: 'https://juejin.cn/user/1565318510545901',
+            // },
+            // {
+            //   label: 'Discord',
+            //   href: 'https://discord.gg/M8cVcjDxkz',
+            // },
           ],
         },
         {
@@ -243,13 +258,7 @@ const config = {
       playgroundPosition: 'top',
     },
     socials: {
-      github: 'https://github.com/kuizuo',
-      twitter: 'https://twitter.com/kuizuo',
-      juejin: 'https://juejin.cn/user/1565318510545901',
-      csdn: 'https://blog.csdn.net/kuizuo12',
-      qq: 'https://wpa.qq.com/msgrd?v=3&amp;uin=911993023&amp;site=qq',
-      zhihu: 'https://www.zhihu.com/people/kuizuo',
-      cloudmusic: 'https://music.163.com/#/user/home?id=1333010742',
+      github: 'https://github.com/pansyhou',
     },
   },
   headTags: [

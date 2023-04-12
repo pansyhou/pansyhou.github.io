@@ -31,12 +31,12 @@ function Hero() {
         <animated.div style={trails[0]} className={styles.hero_text}>
           <Translate id="homepage.hero.greet">你好! 我是</Translate>
           <span className={styles.intro__name}>
-            <Translate id="homepage.hero.name">愧怍</Translate>
+            <Translate id="homepage.hero.name">pansyhou</Translate>
           </span>
         </animated.div>
         <animated.p style={trails[1]}>
           <Translate id="homepage.hero.text">
-            {`在这里我会分享各类技术栈所遇到问题与解决方案，带你了解最新的技术栈以及实际开发中如何应用，并希望我的开发经历对你有所启发。`}
+            {`在这里你可以了解到各种乱七八糟的知识大杂烩，比如说来点嵌入式、来点前后端=)、我所遇到问题与解决方案、学习笔记，还能看我碎碎念(bushi。`}
           </Translate>
           <br />
           <br />
@@ -45,27 +45,27 @@ function Hero() {
             values={{
               note: (
                 <Link to="/docs/skill">
-                  <Translate id="hompage.hero.note">技术笔记</Translate>
+                  <Translate id="hompage.hero.note">学习笔记</Translate>
                 </Link>
               ),
               project: (
                 <Link to="/project">
-                  <Translate id="hompage.hero.project">实战项目</Translate>
+                  <Translate id="hompage.hero.project">实践项目</Translate>
                 </Link>
               ),
-              link: (
-                <Link to="/resource">
-                  <Translate id="hompage.hero.link">资源导航</Translate>
-                </Link>
-              ),
+              // link: (
+              //   <Link to="/resource">
+              //     <Translate id="hompage.hero.link">资源导航</Translate>
+              //   </Link>
+              // ),
               idea: (
                 <Link to="/tags/随笔">
-                  <Translate id="hompage.hero.idea">想法感悟</Translate>
+                  <Translate id="hompage.hero.idea">碎碎念</Translate>
                 </Link>
               ),
             }}
           >
-            {`你可以随处逛逛，查看{note}、{project}、{link}、以及我的{idea}。`}
+            {`你可以随处逛逛，查看{note}、{project}、以及我的{idea}。`}
           </Translate>
         </animated.p>
         <SocialLinks style={trails[2]} />
@@ -87,34 +87,19 @@ export function SocialLinks({ ...prop }) {
 
   const socials = themeConfig.socials as {
     github: string
-    twitter: string
-    juejin: string
-    csdn: string
-    qq: string
-    wx: string
-    cloudmusic: string
-    zhihu: string
+    // twitter: string
+    // juejin: string
+    // csdn: string
+    // qq: string
+    // wx: string
+    // cloudmusic: string
+    // zhihu: string
   }
 
   return (
     <animated.div className={styles.social__links} {...prop}>
-      <a href="/rss.xml" target="_blank">
-        <Icon icon="ri:rss-line" />
-      </a>
       <a href={socials.github} target="_blank">
         <Icon icon="ri:github-line" />
-      </a>
-      <a href={socials.juejin} target="_blank">
-        <JuejinIcon />
-      </a>
-      <a href={socials.qq} target="_blank">
-        <Icon icon="ri:qq-line" />
-      </a>
-      <a href={socials.twitter} target="_blank">
-        <Icon icon="ri:twitter-line" />
-      </a>
-      <a href={socials.zhihu} target="_blank">
-        <Icon icon="ri:zhihu-line" />
       </a>
     </animated.div>
   )
