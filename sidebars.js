@@ -349,6 +349,7 @@ const sidebars = {
   stm32: [
     'stm32/introduction',
     'stm32/uart-send-recv',
+    'stm32/motion-planning'
   ],
   // esp32: [
   //   'stm32/introduction',
