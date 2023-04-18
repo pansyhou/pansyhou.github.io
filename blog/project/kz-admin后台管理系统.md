@@ -23,7 +23,7 @@ image: /img/project/kz-admin.png
 
 **基于[Vben Admin](https://vvbin.cn/doc-next/)开发，使用 Vue3、Vite、TypeScript 等最新技术栈，内置常用功能组件、权限验证、动态路由。**
 
-仓库地址：https://github.com/kuizuo/kz-vue-admin
+仓库地址：https://github.com/pansy/kz-vue-admin
 
 ### [项目结构](https://vvbin.cn/doc-next/guide/#%E7%9B%AE%E5%BD%95%E8%AF%B4%E6%98%8E)
 
@@ -108,7 +108,7 @@ pnpm run dev
 
 **基于 NestJs + TypeScript + TypeORM + Redis + MySql 编写的前后端分离权限管理系统**
 
-仓库地址：https://github.com/kuizuo/kz-nest-admin
+仓库地址：https://github.com/pansy/kz-nest-admin
 
 ### [项目结构](https://blog.si-yee.com/sf-admin-cli/nest/usage.html#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E)
 

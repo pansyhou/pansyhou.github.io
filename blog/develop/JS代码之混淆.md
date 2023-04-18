@@ -15,7 +15,7 @@ keywords: [javascript, ast, reverse, project]
 >
 > 书籍 《反爬虫 AST 原理与还原混淆实战》
 >
-> 相关混淆代码 [kuizuo/js-de-obfuscator](https://github.com/kuizuo/js-de-obfuscator)
+> 相关混淆代码 [kuizuo/js-de-obfuscator](https://github.com/pansy/js-de-obfuscator)
 >
 > 自写在线混淆与还原网站 [JS 代码混淆与还原 (kuizuo.cn)](http://deobfuscator.kuizuo.cn/)
 
@@ -1056,7 +1056,7 @@ function _0xabcdef2() {
 
 ## 混淆实战
 
-关于混淆实战的代码都已贴到 Github[kuizuo/AST-obfuscator](https://github.com/kuizuo/AST-obfuscator)，在`src/obfuscated`中便可看到完整的混淆程序。其中也包括一些实战还原的例子，大部分的写法都采用了 ES6 的类来写，方便编写理解。
+关于混淆实战的代码都已贴到 Github[kuizuo/AST-obfuscator](https://github.com/pansy/AST-obfuscator)，在`src/obfuscated`中便可看到完整的混淆程序。其中也包括一些实战还原的例子，大部分的写法都采用了 ES6 的类来写，方便编写理解。
 
 大部分混淆的例子在这本书《反爬虫 AST 原理与还原混淆实战》中都有，例如常量混淆，数组混淆与乱序，标识符混淆等等就不细说了，上传的代码中有，不过书中有一些 es6 的代码是没提及到的。
 

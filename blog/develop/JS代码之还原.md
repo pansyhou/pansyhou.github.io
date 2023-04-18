@@ -41,7 +41,7 @@ AST 仅仅只是静态分析，但可以将还原出来的代码替换原来的�
 
 接下来我将要演示一个混淆代码是如何还原的，这个例子是我第一次接触混淆的例子，也可以说是我玩的最溜的一次还原了，反正折腾了也有 4,5 来次。
 
-贴上代码 git 地址 [js-de-obfuscator/example/deobfuscator/cx](https://github.com/kuizuo/js-de-obfuscator/blob/main/example/deobfuscator/cx/code.js)
+贴上代码 git 地址 [js-de-obfuscator/example/deobfuscator/cx](https://github.com/pansy/js-de-obfuscator/blob/main/example/deobfuscator/cx/code.js)
 
 > 注：该 js 文件是通过工具[JavaScript Obfuscator Tool](https://www.obfuscator.io/)进行混淆处理的。
 
@@ -741,7 +741,7 @@ for (var _0x1e5665 = 0, _0x3620b9 = this['JIyEgF']['length']; _0x1e5665 < _0x362
 
 等等，总之你想咋优化都完全可以优化，但还原完的代码就不一定能看懂了。与解密字符串那个相比，如果搞不定字符串解密，那这些都是徒劳。
 
-具体的实例可通过 [源码例子](https://github.com/kuizuo/js-de-obfuscator/tree/main/example/deobfuscator) 中查看对 AST 的操作。
+具体的实例可通过 [源码例子](https://github.com/pansy/js-de-obfuscator/tree/main/example/deobfuscator) 中查看对 AST 的操作。
 
 ## 运行还原后的代码
 

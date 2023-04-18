@@ -109,7 +109,7 @@ SSR 通常是将数据通过服务端的前端框架渲染成 HTML，直接将 H
 
 项目还是相对比较简单的，将链接转化为一个卡片样式的预览效果（包含链接的标题，图片，描述）。
 
-核心代码在 [`routes\api\link.ts`](https://github.com/kuizuo/link-maker/blob/main/routes/api/link.ts) 下，将会生成 `/api/link` 接口，例如访问 [https://link-maker.deno.dev/api/link?q=https://kuizuo.cn](https://link-maker.deno.dev/api/link?q=https://kuizuo.cn 'https://link-maker.deno.dev/api/link?q=https://kuizuo.cn') 你就可以得到如下 json 数据
+核心代码在 [`routes\api\link.ts`](https://github.com/pansy/link-maker/blob/main/routes/api/link.ts) 下，将会生成 `/api/link` 接口，例如访问 [https://link-maker.deno.dev/api/link?q=https://kuizuo.cn](https://link-maker.deno.dev/api/link?q=https://kuizuo.cn 'https://link-maker.deno.dev/api/link?q=https://kuizuo.cn') 你就可以得到如下 json 数据
 
 ```json
 {

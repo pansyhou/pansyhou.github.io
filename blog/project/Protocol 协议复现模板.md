@@ -21,7 +21,7 @@ image: /img/project/protocol.png
 <p align="center">🧪 一个用于快速复现请求协议的 Web 开发模板。</p>
 
 <p align="center">
-  <a href="https://github.com/kuizuo/protocol">
+  <a href="https://github.com/pansy/protocol">
     <img src="https://img.shields.io/github/stars/kuizuo/protocol?style=social" alt="GitHub stars" />
   </a>
   <a href="https://protocol.kuizuo.cn">🖥 在线预览</a>
@@ -38,7 +38,7 @@ image: /img/project/protocol.png
 
 我曾经是做 API 请求的，经常要模拟某些请求（协议复现）。所以写过比较多的 api 请求代码，在此期间尝试编写过许多代码方式和软件形态。但都不令我满意，不是过于繁琐，就是开发太慢，都达不到我想要的预期。尤其是开发体验，可以说是苦不堪言。
 
-就在前段时间接触了 SSR 框架（Nuxt3）与 Serverless Function，并用其写了一些项目，如 [api-service](https://github.com/kuizuo/api-service 'api-service') 。而[某了个羊刷次数的网站](https://7y8y.vercel.app)的实现，则让我意外发现这貌似就是我理想中的的协议复现最佳实现？于是我立马开启了 VSCode，将我的这一想法用代码的方式来实现出来，在经历了两周几乎不间断的开发，最终达到了我的预期效果！
+就在前段时间接触了 SSR 框架（Nuxt3）与 Serverless Function，并用其写了一些项目，如 [api-service](https://github.com/pansy/api-service 'api-service') 。而[某了个羊刷次数的网站](https://7y8y.vercel.app)的实现，则让我意外发现这貌似就是我理想中的的协议复现最佳实现？于是我立马开启了 VSCode，将我的这一想法用代码的方式来实现出来，在经历了两周几乎不间断的开发，最终达到了我的预期效果！
 
 在 [模拟请求|协议复现方案](https://kuizuo.cn/request-protocol-scheme '模拟请求|协议复现方案') 这篇文章中我对协议复现的一些方案总结，而这篇就是对 SSR 框架方案的一个具体实践。
 
@@ -48,7 +48,7 @@ image: /img/project/protocol.png
 
 为此我给这个模板起名 Protocol，即协议，也可以认为是礼仪。**一个用于快速复现请求协议的 Web 开发模板。**
 
-废话不多数，就正式来介绍下 [Protocol](https://github.com/kuizuo/protocol 'Protocol')。
+废话不多数，就正式来介绍下 [Protocol](https://github.com/pansy/protocol 'Protocol')。
 
 ## 目录结构
 
@@ -259,7 +259,7 @@ module.exports = {
 ```javascript title='app.config.ts'
 export default defineAppConfig({ title: 'Protocol', description:
 '一个用于快速复现请求协议的Web开发模板。', author: { name: 'kuizuo', link:
-'https://github.com/kuizuo', qq: 'https://im.qq.com/', wx: 'https://wx.qq.com/',
+'https://github.com/pansy', qq: 'https://im.qq.com/', wx: 'https://wx.qq.com/',
 }, })
 ```
 

@@ -8,7 +8,7 @@ keywords: [git, gitea, drone]
 description: 使用 Gitea 搭建一个轻量级 git 私有仓库，并配置 Drone CI 来实现自动构建与部署。
 ---
 
-之前搭建过 Gitlab，但是就只是搭建而已，并未实际使用，因为我大部分的代码还是存放在 [Github](https://github.com/kuizuo?tab=repositories) 上。
+之前搭建过 Gitlab，但是就只是搭建而已，并未实际使用，因为我大部分的代码还是存放在 [Github](https://github.com/pansy?tab=repositories) 上。
 
 并且大部分项目都是在 [Vercel](https://vercel.com) 上运行的（Vercel 是真好用），但是最近国内访问 vercel 情况不容乐观，貌似被墙了呜呜。然后 Gitlab 的资源占用非常严重，几乎占用了一半的服务器性能，可 [点我](https://kuizuo.cn/gitlab-code-management-environment#运行状态) 查看运行状态。与此同时，随着很多私有项目越来越多，使用 git 私有仓库以及 Vercel 部署，肯定不如自建私有 git 服务和自有服务器部署使用体验来好。
 

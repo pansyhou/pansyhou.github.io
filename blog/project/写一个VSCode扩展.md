@@ -16,7 +16,7 @@ sticky: 4
 
 扩展地址：[VSCode-extension](https://marketplace.visualstudio.com/items?itemName=kuizuo.vscode-extension-sample 'VSCode-extension')
 
-开源地址：[kuizuo/vscode-extension (github.com)](https://github.com/kuizuo/vscode-extension)
+开源地址：[kuizuo/vscode-extension (github.com)](https://github.com/pansy/vscode-extension)
 
 ![vscode-extension](https://img.kuizuo.cn/image-20220711195038039.png)
 

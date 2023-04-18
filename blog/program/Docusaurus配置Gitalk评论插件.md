@@ -17,7 +17,7 @@ keywords: [blog, docusaurus, gitalk]
 
 ### 1、创建评论仓库
 
-首先需要 github 账号，创建一个仓库用于存放评论，由于我的博客是同步上传到[github](https://github.com/kuizuo/blog)上，所以就无需新建仓库
+首先需要 github 账号，创建一个仓库用于存放评论，由于我的博客是同步上传到[github](https://github.com/pansy/blog)上，所以就无需新建仓库
 
 ### 2、开启 issues 功能
 
@@ -132,9 +132,9 @@ const options = {
 
 ### Error: Not Found
 
-options 有个选项 repo，填写的是仓库名称，不是链接，像上面我所填写的就是`blog`，而不是填写https://github.com/kuizuo/blog
+options 有个选项 repo，填写的是仓库名称，不是链接，像上面我所填写的就是`blog`，而不是填写https://github.com/pansy/blog
 
-### 未找到相关的 [Issues](https://github.com/kuizuo/blog/issues) 进行评论，请联系 @xxxxx 初始化创建
+### 未找到相关的 [Issues](https://github.com/pansy/blog/issues) 进行评论，请联系 @xxxxx 初始化创建
 
 这里的 xxxxx 就是选项 admin 的内容，首次载入文章的话需要用管理员账号登录初始化一下（也就是新建一个 issues），否则其他人访问也将会提示该信息。
 
@@ -156,7 +156,7 @@ options 有个选项 repo，填写的是仓库名称，不是链接，像上面�
 <BrowserOnly fallback={<div></div>}>{() => <GitalkComponent options={options} />}</BrowserOnly>
 ```
 
-[查看完整源码点我](https://github.com/kuizuo/blog/blob/main/src/theme/BlogPostPage/index.jsx)
+[查看完整源码点我](https://github.com/pansy/blog/blob/main/src/theme/BlogPostPage/index.jsx)
 
 ## Github Api
 
@@ -174,7 +174,7 @@ options 有个选项 repo，填写的是仓库名称，不是链接，像上面�
     "labels_url": "https://api.github.com/repos/kuizuo/blog/issues/24/labels{/name}",
     "comments_url": "https://api.github.com/repos/kuizuo/blog/issues/24/comments",
     "events_url": "https://api.github.com/repos/kuizuo/blog/issues/24/events",
-    "html_url": "https://github.com/kuizuo/blog/issues/24",
+    "html_url": "https://github.com/pansy/blog/issues/24",
     "id": 1111300101,
     "node_id": "I_kwDOF7NJDM5CPRgF",
     "number": 24,
@@ -186,7 +186,7 @@ options 有个选项 repo，填写的是仓库名称，不是链接，像上面�
       "avatar_url": "https://avatars.githubusercontent.com/u/61005888?v=4",
       "gravatar_id": "",
       "url": "https://api.github.com/users/kuizuo",
-      "html_url": "https://github.com/kuizuo",
+      "html_url": "https://github.com/pansy",
       "followers_url": "https://api.github.com/users/kuizuo/followers",
       "following_url": "https://api.github.com/users/kuizuo/following{/other_user}",
       "gists_url": "https://api.github.com/users/kuizuo/gists{/gist_id}",

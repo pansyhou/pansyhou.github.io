@@ -18,7 +18,7 @@ image: /img/project/kz-admin.png
 
 ## 为何重构
 
-前段时间基于我的 [kz-admin](https://github.com/kuizuo/kz-admin "kz-admin")
+前段时间基于我的 [kz-admin](https://github.com/pansy/kz-admin "kz-admin")
 模板写了一个link-admin的项目（可以访问 [link.kuizuo.cn](http://link.kuizuo.cn/ "link.kuizuo.cn") 在线体验，账号 admin，密码a123456），是一个“一次性”充值链接管理系统，具体自行体验即可（项目未开源）。
 
 该项目有前端管理页面，后端服务，和一个链接使用页面，共三个项目。
@@ -35,7 +35,7 @@ monorepo的重构相对简单，首先使用 [Turborepo](https://turbo.build/rep
 
 ![](https://img.kuizuo.cn/image_Svd1WZKBdf.png)
 
-将 packages 与 apps 下的文件清空，然后把原 kz-admin 的[前端项目](https://github.com/kuizuo/kz-vue-admin)与[后端项目](https://github.com/kuizuo/kz-nest-admin)放到 apps 下。修改下 README.md 与 package.json 其启动命令即可。
+将 packages 与 apps 下的文件清空，然后把原 kz-admin 的[前端项目](https://github.com/pansy/kz-vue-admin)与[后端项目](https://github.com/pansy/kz-nest-admin)放到 apps 下。修改下 README.md 与 package.json 其启动命令即可。
 
 ![](https://img.kuizuo.cn/image_eYL2rKrakb.png)
 

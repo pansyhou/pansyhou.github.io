@@ -292,5 +292,5 @@ https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE>/badge.
 示例：
 
 ```
-https://github.com/kuizuo/github-action-example/actions/workflows/ci.yml/badge.svg
+https://github.com/pansy/github-action-example/actions/workflows/ci.yml/badge.svg
 ```

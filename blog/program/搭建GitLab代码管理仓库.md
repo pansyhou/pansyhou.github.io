@@ -214,7 +214,7 @@ gitlab-ctl start
 
 ```js
 // 原仓库git
-https://github.com/kuizuo/blog
+https://github.com/pansy/blog
 // 在https://后加上username@
 https://kuizuo@github.com/kuizuo/blog
 ```

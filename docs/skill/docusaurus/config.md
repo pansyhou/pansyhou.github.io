@@ -67,7 +67,7 @@ module.exports = config
 
 ```javascript title='docusaurus.config.js'
 socials: {
-    github: 'https://github.com/kuizuo',
+    github: 'https://github.com/pansy',
     twitter: 'https://twitter.com/kuizuo',
     juejin: 'https://juejin.cn/user/1565318510545901',
     csdn: 'https://blog.csdn.net/kuizuo12',

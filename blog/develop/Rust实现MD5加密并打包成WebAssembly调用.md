@@ -170,7 +170,7 @@ pub fn md5(input: &str)-> String {
 
 ## 在项目中使用
 
-这里我所借用 [rwasm/vite-plugin-rsw](https://github.com/rwasm/vite-plugin-rsw) 插件，在 vite 中配合 wasm-pack 进行开发的一个实例。代码部分就不做解读了，有兴趣可自行到翻阅源码：[kuizuo/rust-wasm-md5](https://github.com/kuizuo/rust-wasm-md5)
+这里我所借用 [rwasm/vite-plugin-rsw](https://github.com/rwasm/vite-plugin-rsw) 插件，在 vite 中配合 wasm-pack 进行开发的一个实例。代码部分就不做解读了，有兴趣可自行到翻阅源码：[kuizuo/rust-wasm-md5](https://github.com/pansy/rust-wasm-md5)
 
 在线地址：[http://rust-wasm-md5.kuizuo.cn](http://rust-wasm-md5.kuizuo.cn/) （不保证地址长期可用）
 

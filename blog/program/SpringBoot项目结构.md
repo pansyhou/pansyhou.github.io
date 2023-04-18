@@ -9,7 +9,7 @@ keywords: [java, springboot, develop]
 
 <!-- truncate -->
 
-演示代码地址：[kuizuo/spring-boot-demo (github.com)](https://github.com/kuizuo/spring-boot-demo)
+演示代码地址：[kuizuo/spring-boot-demo (github.com)](https://github.com/pansy/spring-boot-demo)
 
 ## 目录结构展示图
 

@@ -2,12 +2,12 @@
   "name": "blog",
   "version": "2.3.1",
   "author": {
-    "url": "https://github.com/kuizuo",
+    "url": "https://github.com/pansy",
     "email": "hi@kuizuo.cn",
     "name": "Kuizuo"
   },
   "repository": {
-    "url": "https://github.com/kuizuo/blog",
+    "url": "https://github.com/pansy/blog",
     "type": "git"
   },
   "homepage": "https://kuizuo.cn",

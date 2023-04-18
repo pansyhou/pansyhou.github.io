@@ -14,7 +14,7 @@ sticky: 2
 
 在线地址: [KZ API](https://api.kuizuo.cn)
 
-开源地址: [kuizuo/api-service](https://github.com/kuizuo/api-service)
+开源地址: [kuizuo/api-service](https://github.com/pansy/api-service)
 
 ![KZ API](https://img.kuizuo.cn/KZ%20API.png)
 

@@ -347,6 +347,6 @@ app.listen(8000, () => {
 
 ## 代码地址
 
-https://github.com/kuizuo/rpc-browser.git
+https://github.com/pansy/rpc-browser.git
 
 运行方式请查看 README.md

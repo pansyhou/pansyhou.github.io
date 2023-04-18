@@ -237,7 +237,7 @@ const {data, error} = await supabase.auth.signInWithOAuth({
 
 ![](https://azlbliyjwcemojkwazto.supabase.co/storage/v1/object/public/public/image_1polvJf0q0.png)
 
-思来想去，不妨就简单做个图床吧。项目地址：[https://image.kuizuo.cn](https://image.kuizuo.cn) 有兴趣可自行阅读[源码](https://github.com/kuizuo/image-hosting)。（**写的相对匆忙，仅作为演示，随时有可能删除，请勿将此站作为永久图床！**）
+思来想去，不妨就简单做个图床吧。项目地址：[https://image.kuizuo.cn](https://image.kuizuo.cn) 有兴趣可自行阅读[源码](https://github.com/pansy/image-hosting)。（**写的相对匆忙，仅作为演示，随时有可能删除，请勿将此站作为永久图床！**）
 
 ## 一些你可能比较好奇的问题
 
