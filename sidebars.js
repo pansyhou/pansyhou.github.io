@@ -349,10 +349,14 @@ const sidebars = {
   stm32: [
     'stm32/introduction',
     'stm32/uart-send-recv',
-    'stm32/motion-planning'
+    'stm32/motion-planning',
+    'stm32/arm_dev_note',
+    'stm32/22_embedded_task',
   ],
   ros: [
     'ros/two_degree_arm',
+    'ros/wsl2_ros',
+    'ros/ros_control'
   ],
   // esp32: [
   //   'stm32/introduction',

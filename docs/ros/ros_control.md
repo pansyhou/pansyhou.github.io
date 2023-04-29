@@ -1,4 +1,8 @@
-
+---
+id: ros_control
+slug: /ros_control
+title: ros_control
+---
 
 ![ros control](http://wiki.ros.org/ros_control?action=AttachFile&do=get&target=gazebo_ros_control.png)
 
