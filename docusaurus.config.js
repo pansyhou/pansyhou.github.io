@@ -88,6 +88,10 @@ const config = {
               label: 'STM32',
               to: 'docs/stm32/',
             },
+            {
+              label: 'ROS',
+              to: 'docs/ros/',
+            },
             // {
             //   label: 'ESP32',
             //   to: 'docs/esp32/',

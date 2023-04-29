@@ -351,6 +351,9 @@ const sidebars = {
     'stm32/uart-send-recv',
     'stm32/motion-planning'
   ],
+  ros: [
+    'ros/two_degree_arm',
+  ],
   // esp32: [
   //   'stm32/introduction',
   // ]
