@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[3629],{78891:function(e){e.exports=JSON.parse('{"permalink":"/en/tags/vercel","page":1,"postsPerPage":10,"totalPages":1,"totalCount":3,"blogDescription":"pansyhou\u7684\u4e2a\u4eba\u535a\u5ba2","blogTitle":"Blog"}')}}]);

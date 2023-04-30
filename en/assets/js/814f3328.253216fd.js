@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[2535],{5641:function(e){e.exports=JSON.parse('{"title":"\u6700\u8fd1\u66f4\u65b0","items":[{"title":"\u9ea6\u514b\u7eb3\u59c6\u8f6e\u8fd0\u52a8\u5206\u89e3","permalink":"/en/Decomposition-of-mecanum-wheel-motion"},{"title":"example.","permalink":"/en/why-i-dont-write-notes"}]}')}}]);
