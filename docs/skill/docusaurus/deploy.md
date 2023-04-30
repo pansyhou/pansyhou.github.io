@@ -5,7 +5,7 @@ title: 部署
 authors: kuizuo
 ---
 
-我之前使用 [Vercel](https://vercel.com) 一把梭，无需任何配置，我只需要专注输出内容即可，这是我当时使用 Vercel 部署的文章 [Vercel部署个人博客](/vercel-deploy-blog)
+我之前使用 [Vercel](https://vercel.com) 一把梭，无需任何配置，我只需要专注输出内容即可，这是我当时使用 Vercel 部署的文章 Vercel部署个人博客/vercel-deploy-blog
 
 但如今，`vercel.app` 被 DNS 污染，即被墙了，导致国内无法访问，虽然使用有自己的域名解析到 Vercel 上也可能访问，但被墙了，也就意味着国内 DNS 的解析速度必然有所下降，从而导致站点访问速度有所下降。
 
