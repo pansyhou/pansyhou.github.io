@@ -21,7 +21,7 @@
     "description": "hero text"
   },
   "homepage.hero.look":{
-    "message": "你可以随处逛逛，查看{note}、{project}、{link}、以及我的{idea}。",
+    "message": "你可以随处逛逛，查看{note}、{project}、{link}、以及我的{idea}。(往下拉是博客！",
     "description": "hero look"
   },
   "hompage.hero.note": {
