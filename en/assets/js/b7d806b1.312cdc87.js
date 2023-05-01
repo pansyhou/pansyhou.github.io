@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkblog=self.webpackChunkblog||[]).push([[5142],{8525:function(e){e.exports=JSON.parse('{"label":"RoboMaster","permalink":"/en/tags/robo-master","allTagsPath":"/en/tags","count":1}')}}]);
