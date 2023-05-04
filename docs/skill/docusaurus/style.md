@@ -11,7 +11,7 @@ Docusaurus 网站是一个 React 单页应用。 你可以像一般的 React 应
 
 ## 修改主题色
 
-可以在 [这里](https://docusaurus.io/zh-CN/docs/styling-layout#styling-your-site-with-infima) 设置主色调与背景色来查看浅色与深色模式下的效果，例如我的主题色是 <font color="#12AFFA">#12AFFA</font>
+可以在 [这里](https://docusaurus.io/zh-CN/docs/styling-layout#styling-your-site-with-infima) 设置主色调与背景色来查看浅色与深色模式下的效果，例如我的主题色是 <font color="#12AFFA">#12AFFA</font> #ae00ff<font color="#c852ff">#12AFFA</font> 
 
 `@docusaurus/preset-classic` 用 [Infima](https://infima.dev/) 作为底层样式框架。 Infima 提供了灵活的布局，以及常见的 UI 组件样式，适用于以内容为中心的网站（博客、文档、首页）。想要了解更多详情，请查看 [Infima 网站](https://infima.dev/)。
 

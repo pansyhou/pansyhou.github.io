@@ -1,6 +1,9 @@
 const path = require('path')
 const beian = '闽ICP备2020017848号-2'
 
+const math = require('remark-math');
+const katex = require('rehype-katex');
+
 const announcementBarContent = `<a href="/typescript-full-stack-technology-trpc" target="_blank">Typescript 全栈最值得学习的技术栈 TRPC</a>`
 
 /** @type {import('@docusaurus/types').Config} */
@@ -251,10 +254,10 @@ const config = {
       jsLoader: 'matomo.js',
     },
     giscus: {
-      repo: 'kuizuo/blog',
-      repoId: 'MDEwOlJlcG9zaXRvcnkzOTc2MjU2MTI=',
+      repo: 'pansyhou/pansyhou.github.io',
+      repoId: 'R_kgDOJVSGCA',
       category: 'General',
-      categoryId: 'DIC_kwDOF7NJDM4CPK95',
+      categoryId: 'DIC_kwDOJVSGCM4CWP09',
       theme: 'light',
       darkTheme: 'dark',
     },
@@ -282,6 +285,8 @@ const config = {
         docs: {
           path: 'docs',
           sidebarPath: 'sidebars.js',
+          remarkPlugins: [require('remark-math')],
+          rehypePlugins: [require('rehype-katex')],
         },
         blog: false,
         theme: {
@@ -298,9 +303,11 @@ const config = {
         // debug: true,
       }),
     ],
+    
   ],
   // themes: ['@docusaurus/theme-live-codeblock'],
   plugins: [
+    
     'docusaurus-plugin-matomo',
     'docusaurus-plugin-image-zoom',
     'docusaurus-plugin-sass',
@@ -313,6 +320,8 @@ const config = {
         routeBasePath: '/',
         editUrl: ({ locale, blogDirPath, blogPath, permalink }) =>
           `https://github.com/pansyhou/pansyhou.github.io/edit/main/${blogDirPath}/${blogPath}`,
+        remarkPlugins: [math],
+        rehypePlugins: [katex],
         editLocalizedFiles: false,
         blogDescription: 'pansyhou的个人博客',
         blogSidebarCount: 10,
@@ -363,7 +372,7 @@ const config = {
       },
     ],
   ],
-  stylesheets: [],
+  
   i18n: {
     defaultLocale: 'zh-CN',
     locales: [ 'zh-CN'],
@@ -373,6 +382,15 @@ const config = {
       },
     },
   },
+  stylesheets: [
+    {
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css',
+      type: 'text/css',
+      integrity:
+        'sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ',
+      crossorigin: 'anonymous',
+    },
+  ],
 }
 
 module.exports = config

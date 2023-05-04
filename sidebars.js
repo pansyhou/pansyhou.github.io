@@ -17,6 +17,7 @@ const sidebars = {
         'skill/docusaurus/docusaurus-search',
         'skill/docusaurus/docusaurus-comment',
         'skill/docusaurus/docusaurus-deploy',
+        'skill/docusaurus/docusaurus-math-equations'
       ],
     },
     {
@@ -28,11 +29,18 @@ const sidebars = {
       },
       items: [
         'skill/Operate-System/process-management',
-        // 'skill/code-specification/prettier',
-        // 'skill/code-specification/stylelint',
-        // 'skill/code-specification/editorconfig',
-        // 'skill/code-specification/husky',
-        // 'skill/code-specification/npmrc',
+        'skill/Operate-System/processor-scheduling'
+      ],
+    },
+    {
+      label: 'Computer-Organization',
+      type: 'category',
+      link: {
+        type: 'doc',
+        id: 'skill/Computer-Organization/storage-system'
+      },
+      items: [
+        'skill/Computer-Organization/storage-system'
       ],
     },
     // {
