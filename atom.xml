@@ -2,12 +2,45 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://pansyhou.github.io/</id>
     <title>pansyhou</title>
-    <updated>2023-05-01T00:00:00.000Z</updated>
+    <updated>2023-05-06T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://pansyhou.github.io/"/>
     <subtitle>pansyhou的小站 Blog</subtitle>
     <icon>https://pansyhou.github.io/img/favicon.ico</icon>
     <rights>Copyright © 2023 pansyhou Built with Docusaurus.</rights>
+    <entry>
+        <title type="html"><![CDATA[一次突然的面试]]></title>
+        <id>https://pansyhou.github.io/a-sudden-interview</id>
+        <link href="https://pansyhou.github.io/a-sudden-interview"/>
+        <updated>2023-05-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[突然袭击的面试]]></summary>
+        <content type="html"><![CDATA[<p>突然袭击的面试</p><p>lora、tcpip、裁剪linux内核</p><p>烂</p><h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="按照简历来准备吧自嗨时间">按照简历来准备吧（自嗨时间<a href="#按照简历来准备吧自嗨时间" class="hash-link" aria-label="按照简历来准备吧（自嗨时间的直接链接" title="按照简历来准备吧（自嗨时间的直接链接">​</a></h3><p>要烂啦</p><h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="rm">RM<a href="#rm" class="hash-link" aria-label="RM的直接链接" title="RM的直接链接">​</a></h3><blockquote><p>Robomaster 机甲大师工程机器人负责人 2022~至今
+目前主要负责其工程机器人的嵌入式代码编写， 利用函数指针实现有限状态机和奇妙的面向对象、编写封装驱动、
+运动控制算法等等，并使用 FreeRTOS 实时操作系统完成整车的运动控制。 目前正在 Linux 上学习 ROS 机器人操作系统完成对机械臂的路径规划运动控制等等  </p><p>简单介绍一下你在里面负责什么？</p></blockquote><p>这个项目的需求是能够完成整车的运动控制、机身状态切换和人机交互设计部分。</p><p>项目的底层是由两块stm32控制其外设完成的，比如说电机是由can协议发送报文到电调、舵机是控制PWM信号、功率监测芯片是i2c读他的寄存器、陀螺仪是SPI读数据、遥控器是读串口数据</p><p>中间层是由FreeRTOS提供的任务调度，由这个Real time operate system 提供进程的调度，为上层做铺垫。其中，我们开启了几个任务，一个是主任务，负责状态机的处理，第二个是遥控器数据处理任务，第三个是安全任务，负责定时监测各个外设有没有掉线，掉线后的处理等等，第四个是板间通讯，负责上下stm32的数据交换。</p><p>上层就是控制层，根据遥控数据，状态机处理后会跳到对应的处理函数，通过算法比如自动控制原理的pid、lqr实现电机的位置速度闭环驱动，缝合在一起组成整车的基本功能。</p><h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="can">can<a href="#can" class="hash-link" aria-label="can的直接链接" title="can的直接链接">​</a></h4><p>每秒可传输的数据位的个数即为通讯中的波特率  </p><p>简单的物理层代表着要有个复杂的协议</p><p>数据帧以一个显性位(逻辑 0)开始，以 7 个连续的隐性位(逻辑 1)结束，在它们之间，
+分别有仲裁段、控制段、数据段、 CRC 段和 ACK 段。  </p><h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="i2c">i2c<a href="#i2c" class="hash-link" aria-label="i2c的直接链接" title="i2c的直接链接">​</a></h4><p><a href="https://blog.csdn.net/D_Procedural_Life/article/details/105496366" target="_blank" rel="noopener noreferrer">【STM32笔记3】I2C的时序解读与软件模拟（即软件I2C的实现，另有软I2C与硬I2C的差异说明）_stm32 flash i2c 时序_D_Procedural_Life的博客-CSDN博客</a></p><h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="linux">linux<a href="#linux" class="hash-link" aria-label="linux的直接链接" title="linux的直接链接">​</a></h4><p>常见目录说明：
+/bin： 存放二进制可执行文件(ls,cat,mkdir等)，常用命令一般都在这里；
+/etc： 存放系统管理和配置文件；
+/home： 存放所有用户文件的根目录，是用户主目录的基点，比如用户user的主目录就是/home/user，可以用~user表示；
+/usr ： 用于存放系统应用程序；
+/opt： 额外安装的可选应用程序包所放置的位置。一般情况下，我们可以把
+tomcat等都安装到这里；
+/proc： 虚拟文件系统目录，是系统内存的映射。可直接访问这个目录来获取系统信息；
+/root： 超级用户（系统管理员）的主目录（特权阶级o）；
+/sbin: 存放二进制可执行文件，只有root才能访问。这里存放的是系统管理员使用的系统级别的管理命令和程序。如ifconfig等；
+/dev： 用于存放设备文件；
+/mnt： 系统管理员安装临时文件系统的安装点，系统提供这个目录是让用户临时挂载其他的文件系统；
+/boot： 存放用于系统引导时使用的各种文件；
+/lib ： 存放着和系统运行相关的库文件 ；
+/tmp： 用于存放各种临时文件，是公用的临时文件存储点；
+/var： 用于存放运行时需要改变数据的文件，也是某些大文件的溢出区，比方说各种服务的日志文件（系统启动日志等。）等；
+/lost+found： 这个目录平时是空的，系统非正常关机而留下“无家可归”的文件（windows下叫什么.chk）就在这里。</p><h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="freertos">FreeRTOS<a href="#freertos" class="hash-link" aria-label="FreeRTOS的直接链接" title="FreeRTOS的直接链接">​</a></h3><h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="移植">移植<a href="#移植" class="hash-link" aria-label="移植的直接链接" title="移植的直接链接">​</a></h4><p> <a href="https://blog.51cto.com/u_14114084/3651586" target="_blank" rel="noopener noreferrer">【FreeRTOS】FreeRTOS学习笔记（1）— 使用HAL+ STM32F407ZGT6移植FreeRTOS_51CTO博客_freertos stm32f407</a></p><h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="lora">lora<a href="#lora" class="hash-link" aria-label="lora的直接链接" title="lora的直接链接">​</a></h3><p>勇闯无人区！</p><h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="计网">计网<a href="#计网" class="hash-link" aria-label="计网的直接链接" title="计网的直接链接">​</a></h3><p>tcpip网络模型几层？</p><ol><li><strong>应用层</strong>：为用户提供应用功能，比如 HTTP、FTP、Telnet、DNS、SMTP等。</li><li><strong>传输层</strong>：为应用层提供网络支持的，两个传输协议，分别是 TCP 和 UDP。</li><li><strong>网络层</strong>：最常使用的是 IP 协议（Internet Protocol），IP 协议会将传输层的报文作为数据部分，再加上 IP 包头组装成 IP 报文，如果 IP 报文大小超过 MTU（以太网中一般为 1500 字节）就会再次进行分片，得到一个即将发送到网络的 IP 报文</li><li><strong>网络接口层</strong>：在 IP 头部的前面加上 MAC 头部，并封装成数据帧（Data frame）发送到网络上</li></ol><h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="tcp">TCP<a href="#tcp" class="hash-link" aria-label="TCP的直接链接" title="TCP的直接链接">​</a></h4><h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="总结">总结<a href="#总结" class="hash-link" aria-label="总结的直接链接" title="总结的直接链接">​</a></h3><p>我的准备还是少了，比如说没有看知乎或者说b站的模拟面试，了解整个流程，太依赖问别人获取信息了</p><p>感觉hr一上来给我讲一通的东西我也不懂，我不到啊</p><p>我问的还是少了，缺乏经验</p><h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="问题">问题<a href="#问题" class="hash-link" aria-label="问题的直接链接" title="问题的直接链接">​</a></h3><ol><li>自我介绍最好还是准备周全一点吧，我随机应变（就是忘了准备）的自我介绍，完全就是看自己当时写的简历乱编的</li><li>有点紧张，不能正常思考（最好还是能够利用自己学过的东西，深挖，狠狠地讲）</li><li>多了解面试要问什么东西，比如说问面试官对公司的讲解、职位的工作内容、人事面的具体福利</li></ol>]]></content>
+        <author>
+            <name>pansyhou</name>
+            <uri>https://github.com/pansyhou</uri>
+        </author>
+        <category label="面试" term="面试"/>
+        <category label="RoboMaster" term="RoboMaster"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[赛前19天瞎bb]]></title>
         <id>https://pansyhou.github.io/the-19days-before-robomaster</id>
