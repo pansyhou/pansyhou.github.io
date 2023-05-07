@@ -40,7 +40,8 @@ const sidebars = {
         id: 'skill/Computer-Organization/storage-system'
       },
       items: [
-        'skill/Computer-Organization/storage-system'
+        'skill/Computer-Organization/storage-system',
+        'skill/Computer-Organization/mid-term-review',
       ],
     },
     // {
