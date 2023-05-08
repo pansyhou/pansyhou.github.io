@@ -7,6 +7,12 @@ authors: pansyhou
 
 ---
 
+## 计算题
+
+![ww](https://pic.imgdb.cn/item/64591c650d2dde57772e1fbb)
+
+![wowo](https://pic.imgdb.cn/item/64591c460d2dde57772dec30)
+
 :::info
 
 1. CPU执行一段程序时，cache完成存取的次数为？次，主存完成存取的次数为？次，已知cache存取周期为？ns，主存存取周期为？ns，求cache/主存系统的命中率、效率和平均访问时间。（10分）
@@ -91,7 +97,11 @@ authors: pansyhou
 
 :::
 
+#### 字扩展
 
+要求： 用1K×８位的SRAM芯片    拓展成 2K×8位的SRAM存储器 
+
+![image-20230509002151306](https://pic.imgdb.cn/item/6459219f0d2dde577734d1fb)
 
 ## 应用题4
 
@@ -110,3 +120,5 @@ authors: pansyhou
 | **6**                              |                   |                   |                   |                   |                   |                   |                   |                   |
 | **7**                              |                   |                   |                   |                   |                   |                   |                   |                   |
 | **操作类型** |                   |                   |                   |                   |                   |                   |                   |                   |
+
+![image-20230509001439304](https://pic.imgdb.cn/item/64591fef0d2dde57773308c2)
