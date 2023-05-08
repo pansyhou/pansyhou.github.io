@@ -4,7 +4,6 @@ slug: /storage-system
 date: 2023-5-4
 title: 存储系统
 authors: pansyhou
-
 ---
 
 [toc]
