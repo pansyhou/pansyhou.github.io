@@ -51,13 +51,13 @@ keywords: [Cmake, stm32, AC6,compiler]
 
 7. 如果想要适配到Clion或者vscode，需要一点点配置。
 
-   1. 请确认已经按稚晖君的教材已经可以正常识别CmakeList和工具链。[配置CLion用于STM32开发【优雅の嵌入式开发】 - 知乎 (zhihu.com)
+   1. 请确认已经按稚晖君的教材已经可以正常识别CmakeList和工具链。[配置CLion用于STM32开发【优雅の嵌入式开发】 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/145801160)
 
    2. CMake正常即可，不需要openocd（这玩野可太讨厌了，很卡的，如果真想玩一下gdb，可以自己弄命令行
 
       ![image-20230512210556021](https://pic.imgdb.cn/item/645e39b40d2dde5777c57e1a)
 
-   3. CmakeList确保反注释掉开启FPU
+   3. CmakeList确保**反注释**掉开启FPU
 
       ```cmake
       #Uncomment for hardware floating point
@@ -77,6 +77,8 @@ keywords: [Cmake, stm32, AC6,compiler]
 ## Some Details
 
 1. __PACKED关键字需要包含`#include "stm32f4xx_hal_def.h"`这里面有对编译器版本的判断来控制编译哪个版本的字节对齐
+
+   （好像还改成小写的了__packed)
 
    ![图2](https://pic.imgdb.cn/item/645e5e4a0d2dde5777196beb)
 
