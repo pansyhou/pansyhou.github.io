@@ -2,12 +2,27 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://pansyhou.github.io/</id>
     <title>pansyhou</title>
-    <updated>2023-05-06T00:00:00.000Z</updated>
+    <updated>2023-05-11T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://pansyhou.github.io/"/>
     <subtitle>pansyhou的小站 Blog</subtitle>
     <icon>https://pansyhou.github.io/img/favicon.ico</icon>
     <rights>Copyright © 2023 pansyhou Built with Docusaurus.</rights>
+    <entry>
+        <title type="html"><![CDATA[操作系统杂谈]]></title>
+        <id>https://pansyhou.github.io/the-best-operating-system-teacher-i-have-ever-met</id>
+        <link href="https://pansyhou.github.io/the-best-operating-system-teacher-i-have-ever-met"/>
+        <updated>2023-05-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[如何更有意思更高效更深刻更—— 地学习操作系统？]]></summary>
+        <content type="html"><![CDATA[<p>如何更有意思更高效更深刻更—— 地学习操作系统？</p><p><a href="https://www.bilibili.com/video/BV1Xx4y1V7JZ/?spm_id_from=333.999.0.0&amp;vd_source=1dec09b0beea25da1b1f70b68fbcf6d7" target="_blank" rel="noopener noreferrer">南京大学2023操作系统-P1 (蒋炎岩)_哔哩哔哩_bilibili</a></p><p><a href="https://jyywiki.cn/OS/2023/" target="_blank" rel="noopener noreferrer">操作系统：设计与实现 (2023 春季学期) (jyywiki.cn)</a></p><h1>如何更高效地学习OS？</h1><p>被我校OS和Tsinghua的洗礼，我貌似找到了一些门路。</p><ol><li>能够与实际编程环境相结合（很多老师是喜欢</li><li></li></ol>]]></content>
+        <author>
+            <name>pansyhou</name>
+            <uri>https://github.com/pansyhou</uri>
+        </author>
+        <category label="随笔" term="随笔"/>
+        <category label="杂谈" term="杂谈"/>
+        <category label="OS" term="OS"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[一次突然的面试]]></title>
         <id>https://pansyhou.github.io/a-sudden-interview</id>

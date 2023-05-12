@@ -4,11 +4,22 @@
         <title>pansyhou</title>
         <link>https://pansyhou.github.io/</link>
         <description>pansyhou的小站 Blog</description>
-        <lastBuildDate>Sat, 06 May 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 11 May 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-CN</language>
         <copyright>Copyright © 2023 pansyhou Built with Docusaurus.</copyright>
+        <item>
+            <title><![CDATA[操作系统杂谈]]></title>
+            <link>https://pansyhou.github.io/the-best-operating-system-teacher-i-have-ever-met</link>
+            <guid>https://pansyhou.github.io/the-best-operating-system-teacher-i-have-ever-met</guid>
+            <pubDate>Thu, 11 May 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[如何更有意思更高效更深刻更—— 地学习操作系统？]]></description>
+            <content:encoded><![CDATA[<p>如何更有意思更高效更深刻更—— 地学习操作系统？</p><p><a href="https://www.bilibili.com/video/BV1Xx4y1V7JZ/?spm_id_from=333.999.0.0&amp;vd_source=1dec09b0beea25da1b1f70b68fbcf6d7" target="_blank" rel="noopener noreferrer">南京大学2023操作系统-P1 (蒋炎岩)_哔哩哔哩_bilibili</a></p><p><a href="https://jyywiki.cn/OS/2023/" target="_blank" rel="noopener noreferrer">操作系统：设计与实现 (2023 春季学期) (jyywiki.cn)</a></p><h1>如何更高效地学习OS？</h1><p>被我校OS和Tsinghua的洗礼，我貌似找到了一些门路。</p><ol><li>能够与实际编程环境相结合（很多老师是喜欢</li><li></li></ol>]]></content:encoded>
+            <category>随笔</category>
+            <category>杂谈</category>
+            <category>OS</category>
+        </item>
         <item>
             <title><![CDATA[一次突然的面试]]></title>
             <link>https://pansyhou.github.io/a-sudden-interview</link>
