@@ -45,11 +45,9 @@ keywords: [Cmake, stm32, AC6,compiler]
 
 5. 此时keil编译已经正常了。如果port.c文本编辑器发疯的话编译一下，或者重启就好
 
-6. 如果移植过程中已经完成上述步骤还爆一堆error，检查`cmsis_compiler.h`中的宏定义`defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)`有没有开，一般灰了就是识别不出来你的AC6已经开启，需要删除MDK-ARM（下图是正确开启
+6. 如果移植过程中已经完成上述步骤还爆一堆error，检查`cmsis_compiler.h`中的宏定义`defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)`有没有开，一般灰了就是识别不出来你的AC6已经开启，需要删除keil的全局宏定义的__CC_ARM
 
    ![image-20230512212520549](https://pic.imgdb.cn/item/645e3e410d2dde5777d3798f)
-
-   1. 如果是灰的就删掉`MDK-ARM`文件夹，然后用CubeMx重新生成吧（原因懒得排除了=>
 
 7. 如果想要适配到Clion或者vscode，需要一点点配置。
 
