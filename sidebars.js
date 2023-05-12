@@ -361,6 +361,8 @@ const sidebars = {
     'stm32/motion-planning',
     'stm32/arm_dev_note',
     'stm32/22_embedded_task',
+    'stm32/upgrade-your-fuxking-compiler',
+
   ],
   ros: [
     'ros/two_degree_arm',
