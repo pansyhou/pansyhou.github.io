@@ -21,15 +21,15 @@ const sidebars = {
       ],
     },
     {
-      label: 'Operate-System',
+      label: 'Operating-System',
       type: 'category',
       link: {
         type: 'doc',
-        id: 'skill/Operate-System/OperateSystem-guides'
+        id: 'skill/Operating-System/OperateSystem-guides'
       },
       items: [
-        'skill/Operate-System/process-management',
-        'skill/Operate-System/processor-scheduling'
+        'skill/Operating-System/process-management',
+        'skill/Operating-System/processor-scheduling'
       ],
     },
     {
@@ -341,6 +341,19 @@ const sidebars = {
   // ],
   oi: [
     'oi/introduction',
+    {
+      label: 'C++基础',
+      type: 'category',
+      link: {
+        type: 'doc',
+        id: 'oi/C++/C++-oi-basic-guides'
+      },
+      items: [
+        'oi/C++/stl',
+        
+      ],
+    },
+    'oi/two_sum',
     // {
     //   label: '蓝桥杯',
     //   type: 'category',

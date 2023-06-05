@@ -127,3 +127,108 @@ TODO
 [比较IAR，MDK的AC5和AC6以及Embedded Studio的CLANG和GCC编译HAL库性能 - amobbs.com 阿莫电子论坛 -- 东莞阿莫电子网站 - Powered by Discuz!](https://www.amobbs.com/forum.php?mod=viewthread&action=printable&tid=5709400)
 
 [(10条消息) ARM编译器常用的预定义宏___armcc_version_晴天_QQ的博客-CSDN博客](https://blog.csdn.net/caihaitao2000/article/details/124306439)
+
+## 一些想说的话
+
+折腾这个主要是想拓展目前电控的学习范畴，毕竟我感觉我们现在除了继承老前辈的框架好像一无是处（对比起其他大学），有一种原地踏步的感觉。
+
+现在也只有张师兄和杰哥对算法部分是有一定了解并为之学习的，我感觉我自己也有所愧对于实验室，自己说好的寒假学自控、ROS去优化机械臂，却找借口说机械没装好学不了，没实物调不了，跑去学ARM架构和CPP去了，但是一无所获，没有实际应用（没应用就是忘的很快）
+
+所以我愿将目前的电控分成两个方向
+
+1. 架构
+2. 算法
+
+我从小喜欢折腾，想象力好，但是将数学转换成实际运用物理建模属实不是我的强项，但是我能通过外界的学习优化现有的代码框架，这就是我所喜欢的架构方向。
+
+:::info
+
+如果你觉得做一件事情需要很**吃力**去努力才能做好的，那可能是你所选的方向错了。
+
+:::
+
+搞这个的目的是让你们对调试工具（clion or vscode搭配openocd（大便来的）ozone，stm家好像也有一个），编译工具链（arm-gcc等等的使用，指令），make工具（cmake，makefile等等）有一个大概的感知认识，以后的面试这个也是一个所需的技能点，你不可能一直用着keil这个这么完美的奶妈级平台的，不会有任何成长，如果说问你一些宏定义有什么意思，什么含义，我真的回答不出来，或者说问你gdb怎么用，一些命令行的参数一般用什么。
+
+如果说能扩展到Cmake上的话，就能接触到比较现代的东西，比如说一些自动化测试、配置参数调整，上至ros，下至c++适配
+
+比较多大学能够通过这个Cmake去拓展实现自己想实现的框架，去做自动化编译（github action）
+
+具体的内容，如果你学过南京大学的操作系统，会印象更深刻
+
+不是每个人都能知道ARM架构的。
+
+> 有能力的可以看湖南大学的开源
+>
+> https://gitee.com/hnuyuelurm/basic_framework/blob/referee/VSCode+Ozone%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.md
+>
+> 曾庆铖dalao之前我记得好像还是电控组组长吧，也很厉害的
+>
+> 融合了电控算法+框架，视觉+导航的dalao
+
+但是如果你喜欢的是算法方向的话架构可以不用怎么去理，因为你以后面试的也不一定对这些要有深刻的理解
+
+you should focus on your field 
+
+我不会强迫你们去了解这些东西的，毕竟我觉得没什么用，有用的话AC6早被搬出来了
+
+
+
+> MDK5使用AC5带Browse Info
+> 耗时8分51秒
+>
+> MDK5使用AC6带Browse Info
+> 耗时1分07秒
+>
+> IAR带Browse Info（IAR的编译速度很快，等Browse Info时间较长）
+> 耗时2分03秒
+>
+> Embedded Studio4.15使用GCC带Browse Info
+> 耗时38秒
+>
+> Embedded Studio4.15使用CLANG带Browse Info
+> 耗时21秒
+>
+> 总结，Embedded Studio使用CLANG完胜其它方式。
+
+
+
+> **生成代码大小**
+> MDK5使用AC5：
+> Total RO Size (Code + RO Data)             17060 (16.66kB)
+> Total RW Size (RW Data + ZI Data)           6536 ( 6.38kB)
+> Total ROM Size (Code + RO Data + RW Data) 17120 (16.72kB)
+>
+> MDK5使用AC6：
+> Total RO Size (Code + RO Data)             15960 (15.59kB)
+> Total RW Size (RW Data + ZI Data)           6544 ( 6.39kB)
+> Total ROM Size (Code + RO Data + RW Data) 15980 (**15.61kB**)
+>
+> MDK5使用AC6，开启Link-Time优化（2019-03-29，晚11点）。
+> Total RO Size (Code + RO Data)          11476 ( 11.21kB)
+> Total RW Size (RW Data + ZI Data)         6512 (  6.36kB)
+> Total ROM Size (Code + RO Data + RW Data)  11484 ( **11.21kB**)
+>
+> IAR（printf选择full）：
+> 20 290 bytes of readonly code memory
+> 142 bytes of readonly data memory
+> 6 677 bytes of readwrite data memory
+>
+> IAR（开Link优化，printf选择small，新增small测试，2019-03-29，晚10点）：
+> 16 734 bytes of readonly code memory
+>  90 bytes of readonly data memory
+> 6 621 bytes of readwrite data memory
+>
+> Embedded Studio4.15使用GCC
+> [attach]456094[/attach]
+>
+> Embedded Studio4.15使用CLANG
+> [attach]456093[/attach]
+>
+> Embedded Studio4.15使用CLANG开Link-Time优化，效果明显（2019-03-30新增测试）
+> [attach]456345[/attach]
+>
+> 总结，MDK的AC6生成的代码最小。
+
+这些都是纸面的东西，但是还是希望你们在折腾的时候能够了解一些东西
+
+但是如果是喜欢算法的话，真没必要上AC6，你只需要专注于你的算法即可。
