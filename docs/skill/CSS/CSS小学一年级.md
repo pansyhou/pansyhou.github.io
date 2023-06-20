@@ -13,9 +13,10 @@ authors: pansyhou
 ### 字体的复合属性怎么写？
 
 1. style
-2. weight粗细
-3. size/hieght
-4. family
+   1. weight粗细
+
+2. size/hieght
+3. family
 
 ## 文本属性
 
