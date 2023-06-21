@@ -42,6 +42,8 @@ const sidebars = {
       items: [
         'skill/Computer-Organization/storage-system',
         'skill/Computer-Organization/mid-term-review',
+        'skill/Computer-Organization/Information-Coding-and-Data-Representation',
+        'skill/Computer-Organization/final-review'
       ],
     },
     // {
