@@ -356,9 +356,9 @@ const sidebars = {
         
       ],
     },
-    'oi/two_sum',
+    'oi/two_sum', 
     'oi/maximum-value-of-a-string-in-an-array',
-    'oi/greatest-sum-divisible-by-three'
+    'oi/greatest-sum-divisible-by-three',
     // {
     //   label: '蓝桥杯',
     //   type: 'category',
