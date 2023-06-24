@@ -4,7 +4,7 @@
         <title>pansyhou</title>
         <link>https://pansyhou.github.io/</link>
         <description>pansyhou的小站 Blog</description>
-        <lastBuildDate>Sat, 24 Jun 2023 14:12:11 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 24 Jun 2023 16:59:31 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-CN</language>
@@ -13,9 +13,20 @@
             <title><![CDATA[lifestyle/距离我上篇笔记还是在]]></title>
             <link>https://pansyhou.github.io/lifestyle/距离我上篇笔记还是在</link>
             <guid>https://pansyhou.github.io/lifestyle/距离我上篇笔记还是在</guid>
-            <pubDate>Sat, 24 Jun 2023 14:12:11 GMT</pubDate>
+            <pubDate>Sat, 24 Jun 2023 16:59:31 GMT</pubDate>
             <description><![CDATA[Secondary]]></description>
             <content:encoded><![CDATA[<span class="badge badge--secondary">Secondary</span>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[最近三个月计划]]></title>
+            <link>https://pansyhou.github.io/plan-before-september</link>
+            <guid>https://pansyhou.github.io/plan-before-september</guid>
+            <pubDate>Thu, 22 Jun 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[逃离后的深造即将开始。]]></description>
+            <content:encoded><![CDATA[<p>逃离后的深造即将开始。</p><p>差不多就要静下心了吧，锻炼身体也只是为了你更好的学习</p><p>眼前不止要局限于此，虽然说我考不上清华北大吧，但是，还是想提升自己</p><p>虽说受不了的话，就要学会给自己下台阶，但是还是想尝试下</p><blockquote><span class="badge badge--info">要学会给自己行动力。</span></blockquote><p>6.20号，我已经开始锻炼和每日一题了，虽然说题型简单，但也总算是抽出来40分钟提升自己。</p><p>目标是提出来2小时， 给多20分钟给刷题，再来50分钟给操作系统</p><p>不想做自己的偏科生了，天天说沉淀，结果没动手</p><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="目标">目标<a href="#目标" class="hash-link" aria-label="目标的直接链接" title="目标的直接链接">​</a></h2><ol><li>出一套Bsp库的教程，顺便复习一些基础的外设，然后升级为C++库（可参考东大、深大），支持CortexM4和M7（预计也要一个月，慢慢来）</li><li>学STL库 ，补充C++</li><li>两个星期速成南京大学OS</li><li>看esp32s3 linux</li><li>学算法，每天刷一到两小时，完善程序员内功<ol><li>可以</li></ol></li></ol>]]></content:encoded>
+            <category>随笔</category>
+            <category>杂谈</category>
+            <category>plan</category>
         </item>
         <item>
             <title><![CDATA[web大作业]]></title>
@@ -58,17 +69,6 @@
             <category>随笔</category>
             <category>杂谈</category>
             <category>RoboMaster</category>
-        </item>
-        <item>
-            <title><![CDATA[最近三个月计划]]></title>
-            <link>https://pansyhou.github.io/plan-before-september</link>
-            <guid>https://pansyhou.github.io/plan-before-september</guid>
-            <pubDate>Sun, 21 May 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[逃离后的深造即将开始。]]></description>
-            <content:encoded><![CDATA[<p>逃离后的深造即将开始。</p><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="目标">目标<a href="#目标" class="hash-link" aria-label="目标的直接链接" title="目标的直接链接">​</a></h2><ol><li>出一套Bsp库的教程，顺便复习一些基础的外设，然后升级为C++库（可参考东大、深大），支持CortexM4和M7（预计也要一个月，慢慢来）</li><li>学STL库 ，补充C++</li><li>两个星期速成南京大学OS</li><li>学算法，每天刷一到两小时，完善程序员内功<ol><li>可以</li></ol></li></ol>]]></content:encoded>
-            <category>随笔</category>
-            <category>杂谈</category>
-            <category>plan</category>
         </item>
         <item>
             <title><![CDATA[操作系统杂谈]]></title>
