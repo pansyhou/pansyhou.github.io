@@ -26,3 +26,92 @@ Docusaurus 网站是一个 React 单页应用。 你可以像一般的 React 应
 ## 自定义页面
 
 [友链](/friends)、[导航](/resource)、[项目](/project)以及[关于我](/about)页面都在 `src/pages` 目录下定义，根据文件名映射对应路由。页面的创建可以查看 [创建页面 | Docusaurus](https://docusaurus.io/zh-CN/docs/creating-pages)
+
+
+
+## 一些奇怪的标签
+
+### 主要
+
+主要
+
+```html
+<span class="badge badge--primary">Primary</span>
+```
+
+
+
+### 二 次
+
+二 次
+
+```html
+<span class="badge badge--secondary">Secondary</span>
+```
+
+
+
+### 成功
+
+成功
+
+```html
+<span class="badge badge--success">Success</span>
+```
+
+
+
+### 信息
+
+信息
+
+```html
+<span class="badge badge--info">Info</span>
+```
+
+
+
+### 警告
+
+警告
+
+```html
+<span class="badge badge--warning">Warning</span>
+```
+
+
+
+### 危险
+
+危险
+
+```html
+<span class="badge badge--danger">Danger</span>
+```
+
+
+
+一些卡片
+
+<div class="card-demo">  
+    <div class="card">   
+        <div class="card__header">      
+            <h3>Lorem Ipsum</h3>    
+        </div>    
+        <div class="card__body">     
+            <p>        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod        tempor incididunt ut labore et dolore magna aliqua. Quis ipsum        suspendisse ultrices gravida.      
+            </p>    
+        </div>    
+        <div class="card__footer">      
+            <button class="button button--secondary button--block">See All</button>    
+        </div>  
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="card-demo">  <div class="card">    <div class="card__header">      <div class="avatar">        <img          class="avatar__photo"          src="https://avatars1.githubusercontent.com/u/4060187?s=460&v=4" />        <div class="avatar__intro">          <div class="avatar__name">Jared Palmer</div>          <small class="avatar__subtitle">            Consultant, Speaker, Lead Engineer          </small>        </div>      </div>    </div>    <div class="card__image">      <img        src="https://images.unsplash.com/photo-1501619951397-5ba40d0f75da?ixlib=rb-1.2.1&auto=format&fit=crop&w=1655&q=80"        alt="Image alt text"        title="Logo Title Text 1" />    </div>    <div class="card__footer">      <div class="button-group button-group--block">        <button class="button button--secondary">Like</button>        <button class="button button--secondary">Comment</button>        <button class="button button--secondary">Share</button>      </div>    </div>  </div></div>

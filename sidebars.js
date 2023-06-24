@@ -38,7 +38,7 @@ const sidebars = {
       type: 'category',
       link: {
         type: 'doc',
-        id: 'skill/Computer-Organization/storage-system'
+        id: 'skill/Computer-Organization/ComputerOrganization-guides'
       },
       items: [
         'skill/Computer-Organization/storage-system',
