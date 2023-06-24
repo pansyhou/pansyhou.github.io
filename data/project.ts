@@ -1,13 +1,13 @@
 export const projects: Project[] = [
-  //   {
-  //   title: '愧怍的小站',
-  //   description: '基于Docusaurus v2 静态网站生成器实现个人博客',
-  //   preview: '/img/project/blog.png',
-  //   website: 'https://kuizuo.cn',
-  //   source: 'https://github.com/pansy/blog',
-  //   tags: ['opensource', 'design', 'favorite'],
-  //   type: 'web',
-  // },
+    {
+    title: 'WEB前端大作业',
+    description: '基于前端三剑客的RoboMaster主页',
+    preview: '/img/project/WEBACE.png',
+    website: 'https://github.com/pansyhou/DUGT-Web-bighomework',
+    source: 'https://github.com/pansyhou/DUGT-Web-bighomework',
+    tags: ['opensource',  'favorite'],
+    type: 'web',
+  },
   // {
   //   title: '愧怍的小站',
   //   description: '基于Docusaurus v2 静态网站生成器实现个人博客',

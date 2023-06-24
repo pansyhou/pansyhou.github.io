@@ -16,8 +16,10 @@ const config = {
   organizationName: 'pansyhou',
   projectName: 'pansyhou.github.io',
   tagline: '初心高于胜负',
+
   /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
   themeConfig: {
+
     image: 'img/logo.png',
     // announcementBar: {
     //   id: 'announcementBar-3',
@@ -307,7 +309,6 @@ const config = {
   ],
   // themes: ['@docusaurus/theme-live-codeblock'],
   plugins: [
-    
     'docusaurus-plugin-matomo',
     'docusaurus-plugin-image-zoom',
     'docusaurus-plugin-sass',
@@ -394,3 +395,4 @@ const config = {
 }
 
 module.exports = config
+
