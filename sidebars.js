@@ -2,6 +2,7 @@
 const sidebars = {
   skill: [
     'skill/introduction',
+
     {
       label: 'Docusaurus 主题魔改',
       type: 'category',
@@ -23,10 +24,10 @@ const sidebars = {
     {
       label: 'Operating-System',
       type: 'category',
-      link: {
-        type: 'doc',
-        id: 'skill/Operating-System/OperateSystem-guides'
-      },
+      // link: {
+      //   type: 'doc',
+      //   id: 'skill/Operating-System/OperateSystem-guides'
+      // },
       items: [
         // 'skill/Operating-System/process-management',
         // 'skill/Operating-System/processor-scheduling',

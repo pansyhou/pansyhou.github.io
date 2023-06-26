@@ -6,7 +6,8 @@ authors: pansyhou
 keywords: ['guides', 'OperateSystem']
 ---
 
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 
-import DocCardList from '@theme/DocCardList'; import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+<DocCardList items={filteredItems} />
 
-<DocCardList items={useCurrentSidebarCategory().items}/>
