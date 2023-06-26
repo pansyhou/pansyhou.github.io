@@ -19,7 +19,12 @@ const config = {
 
   /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
   themeConfig: {
+    colorMode: {
+      defaultMode: "dark",
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
 
+    },
     image: 'img/logo.png',
     // announcementBar: {
     //   id: 'announcementBar-3',
