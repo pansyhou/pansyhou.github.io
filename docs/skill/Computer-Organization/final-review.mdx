@@ -83,7 +83,7 @@ import HoverContent from '@site/src/components/HoverContent';
    (2)两条指令MOV AL，80H；ADD AL,80H的功能是80H+80H→AL，试写出运算结果及其标志位。
 
    1. Zero Flag、Carry Flag、Overflow Flag、Signal Flag、Parity Flag
-   2. ZF=1零标志，CF=1进位，OF=1溢出，SF=0正，PF=1奇
+   2. ZF=1零标志，CF=1进位，OF=1溢出，`SF=0正`，PF=1奇
 
 
 
@@ -91,9 +91,9 @@ import HoverContent from '@site/src/components/HoverContent';
 
 1. 存储系统层次结构：CPU↔Cache↔主存↔辅存。
 
-   三种高速存储器：**双端口**、**多体交叉**、**相联存储器**
+   三种高速存储器：`双端口`、`多体交叉`、`相联存储器`
 
-   Cache的多层次设计：单级与两级，指令Cache与数据Cache；
+   Cache的多层次设计：`单级与两级`，`指令Cache`与`数据Cache`；
 
    Cache的三种替换算法：**随机替换**、**先进先出**、**最近最少使用**
 
@@ -128,7 +128,7 @@ import HoverContent from '@site/src/components/HoverContent';
    > $\frac{32bits}{200ns}= \frac{16bits}{100ns}= 0.16bit/ns(乘个1000*1000*1000=10^{9})
    > =160*10^{6}bit/s(除以8)=20*10^{6}B/s=2*10^{7}B/s=19MB/s$
 
-5. 某机字长为 32 位，其存储容量是 64KB，按字节编址它的寻址范围是0~64K，按字编址它的寻址范围是0~[(64K×8)位/ 32]字=0~16K字。
+5. 某机字长为 32 位，其存储容量是 64KB，按`字节编址`它的寻址范围是0~64K，按`字编址`它的寻址范围是0~[(64K×8)位/ 32]字=0~16K字。
 
 6. 一个容量为 16K×32 位的存储器，其地址线和数据线的总和为  14 + 32 = 46根；（1k十根，16要4位，相加=14
    当选用下列不同规格的存储芯片：1K×4 位，2K×8 位， 4K×4 位，16K×1 位，4K×8 位，8K×8 位时，各需要128片，32片，32片，32片，16片 ，8片。
