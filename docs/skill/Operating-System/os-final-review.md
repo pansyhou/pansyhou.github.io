@@ -51,6 +51,61 @@ import HoverContent from '@site/src/components/HoverContent';
 
 
 
+## 编程题
+
+```c
+#include<stdio.h>
+#include<string.h>
+
+#define SEARCH_EDU "计算机与网络安全学院" //待查学院
+#define SIZE 10 //学生人数
+#define FILE_NAME "./student.txt" //打开文件名
+#define FILE_OUT "./csStudent.txt" //输出文件名
+#define MAXSIZE 1024
+
+typedef struct STUDENT
+{
+    char name[20];//姓名
+    char sno[20];//学号
+    char edu[50];//学院
+    char age[4];//年龄
+    char sex[4];//性别
+}Student;
+
+int main()
+{
+    Student students[SIZE];
+    FILE* stuFile = fopen(FILE_NAME,"r");
+    FILE* outFILE = fopen(FILE_OUT,"w");
+    char buf[MAXSIZE];
+    //读取文件学生信息到内存
+    for(int i = 0; i < SIZE; i++{
+        fgets(buf,MAXSIZE,stuFile);
+        sscanf(buf, "%[^:]:%[^:]:%[^:]:%[^:]:%[^\n]\n", students[i].name,
+               students[i].sno,students[i].edu,students[i].age,students[i].sex);
+    }
+    //打印内存中所有学生数据到屏幕，检验错误
+    for(int i = 0; i < SIZE; i++)
+    {
+        printf("%s %s %s %s %s\n", students[i].name,
+               students[i].sno,students[i].edu,students[i].age,students[i].sex);
+    }
+    //输出指定学院的学生到文件
+    for(int i = 0; i < SIZE; i++)
+    {
+        if(strcmp(students[i].edu,SEARCH_EDU) == 0)
+        {
+            fprintf(outFILE,"%s:%s:%s:%s:%s\n", students[i].sno,
+                    students[i].name,students[i].age,students[i].sex,students[i].edu);
+        }
+    }
+    return 0;
+}
+
+```
+
+
+
 ## 操作系统概述
 
 ### Concepts
@@ -165,6 +220,8 @@ import HoverContent from '@site/src/components/HoverContent';
 
 
 #### SPOOLing系统
+
+在联机情况下实现的同时外围操作的技术称为SPOOLing 技术，或称为假脱机 技术
 
 真联机假脱机，在联机的情况下同时访问外围操作，实现了输入井输出井，提高了IO速度、把独占设备变成共享设备
 
