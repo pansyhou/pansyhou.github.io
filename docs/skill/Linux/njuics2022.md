@@ -27,7 +27,7 @@ authors: pansyhou
 
 ### define
 
-#### #
+#### 井号#
 
 用于转成字符串，from https://iambingonju.github.io/blog/001-cmacro.html
 
@@ -180,4 +180,33 @@ int add_r2rm(int arg) {...}
 果然不出我所料，他并不能正确识别1、0之外的宏
 
 :::
+
+### BITS 相关
+
+1. `#define BITMASK(bits) ((1ull << (bits)) - 1)`用于生成bits个的1(低位开始
+
+  ![image-20230718131726538](https://pic.imgdb.cn/item/64b621b81ddac507ccd7bbbe)
+
+2. `#define BITS(x, hi, lo) (((x) >> (lo)) & BITMASK((hi) - (lo) + 1))`
+
+   用于截取x的从hi到lo的位情况
+
+3. `#define SEXT(x, len) ({ struct { int64_t n : len; } __x = { .n = x }; (uint64_t)__x.n; })`
+
+   对比起GPT说这个是拓展，我更觉得像压缩，通过位域再赋值压缩的，先不管他应用场景吧，应该还是能理解的。
+
+```c
+#define ROUNDUP(a, sz)   ((((uintptr_t)a) + (sz) - 1) & ~((sz) - 1))
+#define ROUNDDOWN(a, sz) ((((uintptr_t)a)) & ~((sz) - 1))
+```
+
+这两我也没懂...非常震撼，而且不知道uintptr_t要去哪找，是不是在链接的时候偷偷链接了？
+
+
+
+`#define PG_ALIGN __attribute((aligned(4096)))`
+
+将其对齐到 4096 字节的边界。对齐到页面大小的边界在一些情况下很有用，例如操作系统中的内存分页机制或设备驱动程序中的内存映射等。通过将 `PG_ALIGN` 属性应用于相关的定义，可以确保它们按照指定的页面大小对齐
+
+
 
