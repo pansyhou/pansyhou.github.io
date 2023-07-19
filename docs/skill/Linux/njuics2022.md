@@ -202,11 +202,128 @@ int add_r2rm(int arg) {...}
 
 这两我也没懂...非常震撼，而且不知道uintptr_t要去哪找，是不是在链接的时候偷偷链接了？
 
-
-
 `#define PG_ALIGN __attribute((aligned(4096)))`
 
 将其对齐到 4096 字节的边界。对齐到页面大小的边界在一些情况下很有用，例如操作系统中的内存分页机制或设备驱动程序中的内存映射等。通过将 `PG_ALIGN` 属性应用于相关的定义，可以确保它们按照指定的页面大小对齐
 
+#### GDB
+
+[Tutorial link](https://www.cprogramming.com/gdb.html)
+
+大概用法就是围绕`break+行号/函数名`，然后`next/step`进入，然后`run`，这几个就是对标我们以前keil工具栏上面的那几个小工具了。
+
+其次就是variable了
+
+1. `print+变量名`
+2. `set 变量名=value`
+3. `watch 变量名`
+
+最后是list，用于列出breakpoints
+
+还有个`continue`，不知道干嘛的
+
+但是目前对寄存器的打印、pc的trace等等还没有探索完成
+
+:::tip快去看进阶
+
+[Advanced GDB Debugging](https://www.cprogramming.com/gdbtutorial.html)
+
+[Learn about Valgrind, a memory leak detector and memory error hunter](https://www.cprogramming.com/debugging/valgrind.html)
+
+[More information about finding and debugging segmentation faults (segfaults)](https://www.cprogramming.com/debugging/segfaults.html)
+
+[Debugging with Visual Studio](https://www.cprogramming.com/tutorial/debugging_concepts.html)
+
+:::
+
+right now , i have so many questions.
+
+such ass 
+
+####  究竟要执行多久?
+
+在`cmd_c()`函数中, 调用`cpu_exec()`的时候传入了参数`-1`, 你知道这是什么意思吗?
+
+#### 执行速度与多线程执行
+
+hard，关于这个nemu感觉就是单线程的（感觉而已）
+
+```shell
+[src/cpu/cpu-exec.c:120 cpu_exec] nemu: HIT GOOD TRAP at pc = 0x8000000c
+[src/cpu/cpu-exec.c:88 statistic] host time spent = 5,917 us
+[src/cpu/cpu-exec.c:89 statistic] total guest instructions = 4
+[src/cpu/cpu-exec.c:90 statistic] simulation frequency = 676 inst/s
+```
+
+676inst/s，有点拉了吧？可能是没让他干什么
+
+原来有说明
+
+> 说明客户程序已经成功地结束运行. NEMU会在`cpu_exec()`函数的最后打印执行的指令数目和花费的时间, 并计算出指令执行的频率. 但由于内置客户程序太小, 执行很快就结束了, 目前无法计算出有意义的频率, 将来运行一些复杂的程序时, 此处输出的频率可以用于粗略地衡量NEMU的性能.
+
+:::tip最后记一下笔记，怕忘了
+
+- 三个对调试有用的宏(在`nemu/include/debug.h`中定义)
+
+  - `Log()`是`printf()`的升级版, 专门用来输出调试信息, 同时还会输出使用`Log()`所在的源文件, 行号和函数. 当输出的调试信息过多的时候, 可以很方便地定位到代码中的相关位置
+  - `Assert()`是`assert()`的升级版, 当测试条件为假时, 在assertion fail之前可以输出一些信息
+  - `panic()`用于输出信息并结束程序, 相当于无条件的assertion fail
+
+  代码中已经给出了使用这三个宏的例子, 如果你不知道如何使用它们, RTFSC.
+
+- 内存通过在`nemu/src/memory/paddr.c`中定义的大数组`pmem`来模拟. 在客户程序运行的过程中, 总是使用`vaddr_read()`和`vaddr_write()` (在`nemu/src/memory/vaddr.c`中定义)来访问模拟的内存. vaddr, paddr分别代表虚拟地址和物理地址. 这些概念在将来才会用到, 目前不必深究, 但从现在开始保持接口的一致性可以在将来避免一些不必要的麻烦.
+
+:::
+
+在我们今天的运行中，已经出现过有颜色的log和很多的Assert断言，但是断言还不知道怎么用，还有welcome的assert(0)
 
 
+
+:::warning TODO:
+
+内存通过在`nemu/src/memory/paddr.c`中定义的大数组`pmem`来模拟. 在客户程序运行的过程中, 总是使用`vaddr_read()`和`vaddr_write()` (在`nemu/src/memory/vaddr.c`中定义)来访问模拟的内存. vaddr, paddr分别代表虚拟地址和物理地址. 这些概念在将来才会用到, 目前不必深究, 但从现在开始保持接口的一致性可以在将来避免一些不必要的麻烦.
+
+:::
+
+
+
+
+
+终于完成了该死的RTFSC part 了呜呜，记得gdb进入tui是`layout split`
+
+
+
+## 7.19
+
+发现写这个sdb还是比较简单的，因为整个框架就搭在sdb上
+
+最主要还是RTFSC，不难，接口nemu已经给我们了
+
+命令处理这里，建议`man strtok` and `man aito`
+
+```c
+for (char *str; (str = rl_gets()) != NULL; ) {
+    //str地址加上长度偏移量得到end
+  char *str_end = str + strlen(str);
+
+  /* extract the first token as the command */
+  char *cmd = strtok(str, " ");
+  if (cmd == NULL) { continue; }
+
+  /* treat the remaining string as the arguments,
+   * which may need further parsing
+   */
+  //一行应该有cmd+args组成，而strtok后，返回的指针为第一个分割后的句子（就是CMD）
+  //而跳到下一个（就是args）需要跳到下一行，用cmd地址+第一句话的长度+分隔符（\0）得到下一个args地址
+  //如果发现args刚好到句子结尾，那就=没有args
+  char *args = cmd + strlen(cmd) + 1;
+  if (args >= str_end) {
+    args = NULL;
+  }
+```
+
+![image-20230719142444300](https://pic.imgdb.cn/item/64b781ad1ddac507cc128acd)
+
+ok，我还以为他帮我把这个写好了，我一debug看，哎哥们怎么没东西啊？
+
+search found that，did nothing right here

@@ -8,6 +8,14 @@ tags: [Cmake, stm32, AC6,compiler]
 keywords: [Cmake, stm32, AC6,compiler]
 ---
 
+## 2023.7.18 updates
+
+![image-20230718232909382](https://pic.imgdb.cn/item/64b6afd01ddac507cc130b1e)
+
+今天在做nju的pa实验时发现了这档事，还是比较严重的，如果说像以前婷婷那台破电脑编译sentry的破工程需要12mins，但是sentry上场的时候发现忘记改宏定义了！刚好需要rebuild，那这个耗时是灾难级的，幸好还有部分的cache，只需要rebuild那个.c/h然后再链接一下
+
+但是还是要小心为好，虽然是他现在ac6发布了商业版，但是我还是忘记不了，函数指针给我指错函数的这档事。。。（比赛前，debug才发现指错函数了，ac6不知道哪个优化级别，重新rebuild+改优化级别才活了）
+
 # 步骤
 
 1. 先去cubemx将`Project Manager`里的`Toolchain/IDE`从`MDK`替换成`STM32CubeMX`（默认你之前用MDK生成的
