@@ -327,3 +327,74 @@ for (char *str; (str = rl_gets()) != NULL; ) {
 ok，我还以为他帮我把这个写好了，我一debug看，哎哥们怎么没东西啊？
 
 search found that，did nothing right here
+
+## 7.20
+
+今日无事，继续做之前的坑
+
+![image-20230720163017029](https://pic.imgdb.cn/item/64b8f09f1ddac507cc88bde2)
+
+经常给我爆这样的金币啊
+
+很难受，我一直在想，他这个menory是怎么读取的？为什么他这个API好像不是很好使
+
+paddr和vaddr有什么区别？
+
+然后我继续重新看源码，找到了最终接口是怎么算的
+
+我掐指一算，这个读内存的方式没毛病啊，一下子给我整傻了
+
+okgdb一下吧那就
+
+gdb发现入参好像也没啥毛病，但是跳到了
+
+第一个switchcase，突然想起来他这个len不是我要读多少个字节，而是打印的长度
+
+人麻了
+
+![image-20230720163812407](https://pic.imgdb.cn/item/64b8f27b1ddac507cc8f4fb7)
+
+![image-20230720164121590](https://pic.imgdb.cn/item/64b8f3311ddac507cc91e69b)
+
+效果甚佳，用到了IFDEF判断架构，理论上能够适配64位
+
+## 7.22
+
+没更新两天，~~绝对不是想摸鱼，也不是打游戏打的不想学习（嗯嗯）~~
+
+去做麦克纳姆轮里程计解算去了，果然KISS原则还是要遵守会比较舒服一点的
+
+这边刚看完正则表达式 https://regex101.com/
+
+准备看一下regex正则表达式的库 https://www.cnblogs.com/hjslovewcl/articles/2314311.html
+
+
+
+## 7.23
+
+昨天弄好了vscode的gdb调试，不知道为什么我gdb的tui会撕裂
+
+今天儿，定位到好像是regex解析表达式的时候有问题，按照程序来讲，那个position的增量应该是对的
+
+今个决定换个规则+表达式，真奇怪啊，我之前的测试用例是`hi==`，理论上能够读到==的
+
+![image-20230723153652338](https://pic.imgdb.cn/item/64bcd89a1ddac507ccf6baa0)
+
+#### regex
+
+**限定符**
+
+?：代表问号前面的字符出现0/1次
+
+*：可以匹配0/多次
+
++：可以匹配多次(0不行)
+
+{6}：代表前面的出现6次（{2,6}2-6次，{2,}2次以上）
+
+**或运算**
+
+`a (cat|dog)`代表a cat/a dog匹配
+
+芜湖完成
+
