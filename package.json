@@ -63,6 +63,7 @@
     "rehype-katex": "^5.0.0",
     "remark-math": "^3.0.1",
     "sass": "^1.54.8",
+    "shape": "^0.0.1",
     "sharp": "^0.32.1"
   },
   "devDependencies": {
