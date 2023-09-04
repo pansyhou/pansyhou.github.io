@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://pansyhou.github.io/</id>
     <title>pansyhou</title>
-    <updated>2023-08-30T04:42:57.000Z</updated>
+    <updated>2023-09-04T05:42:50.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://pansyhou.github.io/"/>
     <subtitle>pansyhou的小站 Blog</subtitle>
@@ -12,7 +12,7 @@
         <title type="html"><![CDATA[lifestyle/距离我上篇笔记还是在]]></title>
         <id>https://pansyhou.github.io/lifestyle/距离我上篇笔记还是在</id>
         <link href="https://pansyhou.github.io/lifestyle/距离我上篇笔记还是在"/>
-        <updated>2023-08-30T04:42:57.000Z</updated>
+        <updated>2023-09-04T05:42:50.000Z</updated>
         <summary type="html"><![CDATA[Secondary]]></summary>
         <content type="html"><![CDATA[<span class="badge badge--secondary">Secondary</span>]]></content>
     </entry>
@@ -37,7 +37,7 @@
         <link href="https://pansyhou.github.io/to-be-a-better-self.md"/>
         <updated>2023-08-18T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[fuxk me , fuxk you , fuxk the world]]></summary>
-        <content type="html"><![CDATA[<p>fuxk me , fuxk you , fuxk the world</p><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="改善信息获取渠道">改善信息获取渠道<a href="#改善信息获取渠道" class="hash-link" aria-label="改善信息获取渠道的直接链接" title="改善信息获取渠道的直接链接">​</a></h2><h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="读一些你平时不会读到的">读一些你平时不会读到的<a href="#读一些你平时不会读到的" class="hash-link" aria-label="读一些你平时不会读到的的直接链接" title="读一些你平时不会读到的的直接链接">​</a></h3><p>such as背个单词</p><ol><li><a href="http://bbs.chinaunix.net/" target="_blank" rel="noopener noreferrer">论坛-Chinaunix</a></li><li><a href="https://www.52audio.com/archives/category/teardowns" target="_blank" rel="noopener noreferrer">拆解 - 我爱音频网 (52audio.com)</a></li><li><a href="https://www.zhaixue.cc/" target="_blank" rel="noopener noreferrer">宅学部落 | 专注嵌入式精品教程：RTOS,嵌入式,C语言,Linux内核,驱动开发,物联网,AIoT (zhaixue.cc)</a></li><li><a href="https://www.zhaixue.cc/" target="_blank" rel="noopener noreferrer">https://www.zhaixue.cc/</a></li><li>看linus骂人<a href="https://lkml.org/" target="_blank" rel="noopener noreferrer">LKML.ORG - the Linux Kernel Mailing List Archive</a></li><li>嵌入式linux wiki<a href="https://elinux.org/Main_Page" target="_blank" rel="noopener noreferrer">eLinux.org</a></li><li><a href="http://www.wowotech.net/" target="_blank" rel="noopener noreferrer">蜗窝科技 (wowotech.net)</a></li><li>[<a href="https://openwrt.org/" target="_blank" rel="noopener noreferrer">OpenWrt Wiki<!-- -->]<!-- --> Welcome to the OpenWrt Project</a></li></ol><blockquote><p>对于大公司而言，分工比较细，一个人可能只负责某个模块。但如果你只会某一层，或者某个模块，只关注自己的一亩三分地，没有大局观，也不可能做好自己负责某一层或某个模块。你的目标是打磨好自己的模块，系统出问题时，不要让bug定位到你的模块里，让你来背锅。</p></blockquote><p>不要太好笑</p><h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="接触不同的世界观">接触不同的世界观<a href="#接触不同的世界观" class="hash-link" aria-label="接触不同的世界观的直接链接" title="接触不同的世界观的直接链接">​</a></h3><h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="应用你新学到的东西">应用你新学到的东西<a href="#应用你新学到的东西" class="hash-link" aria-label="应用你新学到的东西的直接链接" title="应用你新学到的东西的直接链接">​</a></h3>]]></content>
+        <content type="html"><![CDATA[<p>fuxk me , fuxk you , fuxk the world</p><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="改善信息获取渠道">改善信息获取渠道<a href="#改善信息获取渠道" class="hash-link" aria-label="改善信息获取渠道的直接链接" title="改善信息获取渠道的直接链接">​</a></h2><h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="读一些你平时不会读到的">读一些你平时不会读到的<a href="#读一些你平时不会读到的" class="hash-link" aria-label="读一些你平时不会读到的的直接链接" title="读一些你平时不会读到的的直接链接">​</a></h3><p>such as背个单词</p><ol><li><a href="http://bbs.chinaunix.net/" target="_blank" rel="noopener noreferrer">论坛-Chinaunix</a></li><li><a href="https://www.52audio.com/archives/category/teardowns" target="_blank" rel="noopener noreferrer">拆解 - 我爱音频网 (52audio.com)</a></li><li><a href="https://www.zhaixue.cc/" target="_blank" rel="noopener noreferrer">宅学部落 | 专注嵌入式精品教程：RTOS,嵌入式,C语言,Linux内核,驱动开发,物联网,AIoT (zhaixue.cc)</a></li><li><a href="https://www.zhaixue.cc/" target="_blank" rel="noopener noreferrer">https://www.zhaixue.cc/</a></li><li>看linus骂人<a href="https://lkml.org/" target="_blank" rel="noopener noreferrer">LKML.ORG - the Linux Kernel Mailing List Archive</a></li><li>嵌入式linux wiki<a href="https://elinux.org/Main_Page" target="_blank" rel="noopener noreferrer">eLinux.org</a></li><li><a href="http://www.wowotech.net/" target="_blank" rel="noopener noreferrer">蜗窝科技 (wowotech.net)</a></li><li>[<a href="https://openwrt.org/" target="_blank" rel="noopener noreferrer">OpenWrt Wiki<!-- -->]<!-- --> Welcome to the OpenWrt Project</a></li><li><a href="https://gitee.com/explore" target="_blank" rel="noopener noreferrer">开源软件 - Gitee.com</a></li></ol><blockquote><p>对于大公司而言，分工比较细，一个人可能只负责某个模块。但如果你只会某一层，或者某个模块，只关注自己的一亩三分地，没有大局观，也不可能做好自己负责某一层或某个模块。你的目标是打磨好自己的模块，系统出问题时，不要让bug定位到你的模块里，让你来背锅。</p></blockquote><p>不要太好笑</p><h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="接触不同的世界观">接触不同的世界观<a href="#接触不同的世界观" class="hash-link" aria-label="接触不同的世界观的直接链接" title="接触不同的世界观的直接链接">​</a></h3><h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="应用你新学到的东西">应用你新学到的东西<a href="#应用你新学到的东西" class="hash-link" aria-label="应用你新学到的东西的直接链接" title="应用你新学到的东西的直接链接">​</a></h3>]]></content>
         <author>
             <name>pansyhou</name>
             <uri>https://github.com/pansyhou</uri>
