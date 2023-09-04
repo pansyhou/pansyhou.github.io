@@ -31,6 +31,7 @@ such as背个单词
 6. 嵌入式linux wiki[eLinux.org](https://elinux.org/Main_Page)
 7. [蜗窝科技 (wowotech.net)](http://www.wowotech.net/)
 8. [[OpenWrt Wiki\] Welcome to the OpenWrt Project](https://openwrt.org/)
+9. [开源软件 - Gitee.com](https://gitee.com/explore)
 
 > 对于大公司而言，分工比较细，一个人可能只负责某个模块。但如果你只会某一层，或者某个模块，只关注自己的一亩三分地，没有大局观，也不可能做好自己负责某一层或某个模块。你的目标是打磨好自己的模块，系统出问题时，不要让bug定位到你的模块里，让你来背锅。
 
