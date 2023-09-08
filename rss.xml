@@ -4,7 +4,7 @@
         <title>pansyhou</title>
         <link>https://pansyhou.github.io/</link>
         <description>pansyhou的小站 Blog</description>
-        <lastBuildDate>Mon, 04 Sep 2023 05:42:50 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 08 Sep 2023 13:49:45 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-CN</language>
@@ -13,9 +13,23 @@
             <title><![CDATA[lifestyle/距离我上篇笔记还是在]]></title>
             <link>https://pansyhou.github.io/lifestyle/距离我上篇笔记还是在</link>
             <guid>https://pansyhou.github.io/lifestyle/距离我上篇笔记还是在</guid>
-            <pubDate>Mon, 04 Sep 2023 05:42:50 GMT</pubDate>
+            <pubDate>Fri, 08 Sep 2023 13:49:45 GMT</pubDate>
             <description><![CDATA[Secondary]]></description>
             <content:encoded><![CDATA[<span class="badge badge--secondary">Secondary</span>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[更新日志]]></title>
+            <link>https://pansyhou.github.io/daily</link>
+            <guid>https://pansyhou.github.io/daily</guid>
+            <pubDate>Thu, 07 Sep 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[点击查看]]></description>
+            <content:encoded><![CDATA[<p>点击查看</p><h1>日志</h1><ul><li><p><strong>2023.9.7</strong>：
+完成<a href="https://leetcode.cn/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/solutions/1398809/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-sh-epeo/" target="_blank" rel="noopener noreferrer">剑指 Offer 67. 把字符串转换成整数 </a>纯粹浪费我时间，题解都用long long存，自己骗自己呢
+明天记得看一看自动机</p><p>linux板：</p><p>目前已经确认应该是启动选项飞到了网络启动导致的vfs启动
+<del><strong>但是依旧解决不了nfs不能访问的问题。</strong></del>
+很明显问题已经轻松解决，因为uboot的nfs是V2</p><p><a href="https://blog.csdn.net/polaris_zgx/article/details/103571725" target="_blank" rel="noopener noreferrer">u-boot NFS下载文件报错：Loading: <em>** ERROR: File lookup fail解决方法_uboot nfs loading:</em>-CSDN博客</a>
+搞好之后第二遍确认他bootz后采用的是网络启动，应该是就是这句</p><div class="language-javascript codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-javascript codeBlock_bY9V thin-scrollbar"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">netargs </span><span class="token string" style="color:rgb(206, 145, 120)">'setenv bootargs console=${console},${baudrate} root=/dev/nfs ip=dhcp nfsroot=${serverip}:${nfsroot},v3,tcp'</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg class="copyButtonIcon_y97N" viewBox="0 0 24 24"><path d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg class="copyButtonSuccessIcon_LjdS" viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div><p>已经初步用busybox构建好一些小软件
+<img loading="lazy" src="https://pic.imgdb.cn/item/64f9dc86661c6c8e5467f35d" alt="image-20230907222151573" class="img_ev3q"></p><div class="language-javascript codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#9CDCFE;--prism-background-color:#1E1E1E"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-javascript codeBlock_bY9V thin-scrollbar"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#9CDCFE"><span class="token plain">启动</span><span class="token number" style="color:rgb(181, 206, 168)">3</span><span class="token plain">件套</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">tftp </span><span class="token number" style="color:rgb(181, 206, 168)">80800000</span><span class="token plain"> zImage</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">tftp </span><span class="token number" style="color:rgb(181, 206, 168)">83000000</span><span class="token plain"> imx6ull</span><span class="token operator" style="color:rgb(212, 212, 212)">-</span><span class="token plain">14x14</span><span class="token operator" style="color:rgb(212, 212, 212)">-</span><span class="token plain">emmc</span><span class="token operator" style="color:rgb(212, 212, 212)">-</span><span class="token number" style="color:rgb(181, 206, 168)">4.3</span><span class="token operator" style="color:rgb(212, 212, 212)">-</span><span class="token plain">800x480</span><span class="token operator" style="color:rgb(212, 212, 212)">-</span><span class="token plain">c</span><span class="token punctuation" style="color:rgb(212, 212, 212)">.</span><span class="token property-access">dtb</span><span class="token plain"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">bootz </span><span class="token number" style="color:rgb(181, 206, 168)">80800000</span><span class="token plain"> </span><span class="token operator" style="color:rgb(212, 212, 212)">-</span><span class="token plain"> </span><span class="token number" style="color:rgb(181, 206, 168)">83000000</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg class="copyButtonIcon_y97N" viewBox="0 0 24 24"><path d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg class="copyButtonSuccessIcon_LjdS" viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div></li><li><p><strong>2023.9.8</strong>：</p><ul class="contains-task-list containsTaskList_mC6p"><li class="task-list-item"><input type="checkbox" checked="" disabled=""> <!-- -->创建/etc/fstab挂载需要的分区</li><li class="task-list-item"><input type="checkbox" checked="" disabled=""> <!-- -->创建/etc/init.d/rcS 文件启动一些服务</li><li class="task-list-item"><input type="checkbox" checked="" disabled=""> <!-- -->创建/etc/inittab</li></ul><p>哥们要准备去考研了呜呜</p></li></ul>]]></content:encoded>
         </item>
         <item>
             <title><![CDATA[C用法笔记]]></title>
@@ -45,7 +59,7 @@
             <guid>https://pansyhou.github.io/plan-before-september</guid>
             <pubDate>Thu, 22 Jun 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[逃离后的深造即将开始。]]></description>
-            <content:encoded><![CDATA[<p>逃离后的深造即将开始。</p><p>差不多就要静下心了吧，锻炼身体也只是为了你更好的学习</p><p>眼前不止要局限于此，虽然说我考不上清华北大吧，但是，还是想提升自己</p><p>虽说受不了的话，就要学会给自己下台阶，但是还是想尝试下</p><blockquote><span class="badge badge--info">要学会给自己行动力。</span></blockquote><p>6.20号，我已经开始锻炼和每日一题了，虽然说题型简单，但也总算是抽出来40分钟提升自己。</p><p>目标是提出来2小时， 给多20分钟给刷题，再来50分钟给操作系统</p><p>不想做自己的偏科生了，天天说沉淀，结果没动手</p><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="目标">目标<a href="#目标" class="hash-link" aria-label="目标的直接链接" title="目标的直接链接">​</a></h2><ol><li><p>出一套Bsp库的教程，顺便复习一些基础的外设，然后升级为C++库（可参考东大、深大），支持CortexM4和M7（预计也要一个月，慢慢来）</p></li><li><p>学STL库 ，补充C++</p></li><li><p>两个星期速成南京大学OS</p></li><li><p>看esp32s3 linux</p><ol><li>linux内核设计与实现</li></ol></li><li><p>学算法，每天刷一到两小时，完善程序员内功</p><ol><li>可以</li></ol></li></ol><p>读《C陷阱和缺陷》、计网</p>]]></content:encoded>
+            <content:encoded><![CDATA[<p>逃离后的深造即将开始。</p><p>差不多就要静下心了吧，锻炼身体也只是为了你更好的学习</p><p>眼前不止要局限于此，虽然说我考不上清华北大吧，但是，还是想提升自己</p><p>虽说受不了的话，就要学会给自己下台阶，但是还是想尝试下</p><blockquote><span class="badge badge--info">要学会给自己行动力。</span></blockquote><p>6.20号，我已经开始锻炼和每日一题了，虽然说题型简单，但也总算是抽出来40分钟提升自己。</p><p>目标是提出来2小时， 给多20分钟给刷题，再来50分钟给操作系统</p><p>不想做自己的偏科生了，天天说沉淀，结果没动手</p><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="目标">目标<a href="#目标" class="hash-link" aria-label="目标的直接链接" title="目标的直接链接">​</a></h2><ol><li><p>出一套Bsp库的教程，顺便复习一些基础的外设，然后升级为C++库（可参考东大、深大），支持CortexM4和M7（预计也要一个月，慢慢来）</p></li><li><p>学STL库 ，补充C++</p></li><li><p>两个星期速成南京大学OS</p></li><li><p>看esp32s3 linux</p><ol><li>linux内核设计与实现</li></ol></li><li><p>学算法，每天刷一到两小时，完善程序员内功</p><ol><li>可以</li></ol></li></ol><p>读《C陷阱和缺陷》、计网</p><p>计算机图形学</p>]]></content:encoded>
             <category>随笔</category>
             <category>杂谈</category>
             <category>plan</category>
