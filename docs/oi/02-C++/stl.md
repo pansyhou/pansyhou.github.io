@@ -43,7 +43,22 @@ title: stl
 9. ends_with（bool）
 10. start_with（bool）
 
+```c++
+string s;  //生成一个空字符串s
+string s(str); //拷贝构造函数 生成str的复制品
+string s(str,stridx); //将字符串str内“始于位置stridx”的部分当作字符串的初值
+string s(str,stridx,strlen); //将字符串str内“始于stridx且长度顶多strlen”的部分作为字符串的初值
+string s(cstr); //将C字符串作为s的初值
+string s(chars,chars_len); //将C字符串前chars_len个字符作为字符串s的初值。
+string s(num,c); //生成一个字符串，包含num个c字符
+string s(beg,end); //以区间beg;end(不包含end)内的字符作为字符串s的初值
+s.~string(); //销毁所有字符，释放内存
 
+作者：独恋云风星月
+链接：https://leetcode.cn/problems/ti-huan-kong-ge-lcof/solutions/2120489/jian-zhi-offerlian-xi-c-t6-by-zealous-ga-vbek/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+```
 
 **注意，C++14后的特性：**
 

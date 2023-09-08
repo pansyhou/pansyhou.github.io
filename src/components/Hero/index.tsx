@@ -63,9 +63,14 @@ function Hero() {
                   <Translate id="hompage.hero.idea">碎碎念</Translate>
                 </Link>
               ),
+              daily: (
+                <Link to="/daily">
+                  <Translate id="hompage.hero.daily">更新日志</Translate>
+                </Link>
+              ),
             }}
           >
-            {`你可以随处逛逛，查看{note}、{project}、以及我的{idea}。(往下拉是博客！`}
+            {`你可以随处逛逛，查看{note}、{project}、{daily}以及我的{idea}。(往下拉是博客！`}
           </Translate>
         </animated.p>
         <SocialLinks style={trails[2]} />
