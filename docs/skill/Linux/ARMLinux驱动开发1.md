@@ -304,11 +304,106 @@ static inline void unregister_chrdev(unsigned int major, const char *name)
 
 fops就是设备的操作函数集合，比如open、release
 
-#### Linux设备号
+### Linux设备号
 
 分为主次设备号，`dev_t`前12位为主设备号（0-4095）后20位为次设备号
 
 `dev_t` 定义在文件 `include/linux/types.h`
+
+#### 动态分配设备号
+
+```c
+int alloc_chrdev_region(dev_t *dev, unsigned baseminor, unsigned count, const char *name)
+```
+
+1. `dev`保存申请的设备号
+2. `baseminor`次设备号起始地址，
+3. alloc_chrdev_region 可以申请一段连续的多个设备号，这些设备号的主设备号一样，但是次设备号不同，次设备号以 baseminor 为起始地址地址开始递增。一般 baseminor 为 0，也就是说次设备号从 0 开始。
+4. 数量
+5. 设备名
+
+
+
+:::tip
+
+不知道为什么，内核不能访问用户空间，可能是虚拟内存的问题
+
+要采用copy_to_user 函数来完成内核空间的数据到用户空间的复制
+
+还有个是copy_from_user
+
+```c
+static inline long copy_to_user(void __user *to, const void *from, unsigned long n)
+```
+
+:::
+
+### LED驱动
+
+#### ioremap宏
+
+获取物理地址的虚拟地址，定义在arch/arm/include/asm/io.h 文件中
+
+```c
+#define ioremap(cookie,size) __arm_ioremap((cookie), (size),
+MT_DEVICE)
+```
+
+具体细节就不想关了， 只需要知道cookie->`物理addr`，size是寄存器的位数，以字节为单位
+
+```c
+SW_MUX_GPIO1_IO03 = ioremap(SW_MUX_GPIO1_IO03_BASE, 4);
+```
+
+#### iounmap 宏
+
+:::wanring
+
+用于释放ioremap所做的映射
+
+:::
+
+#### IO内存访问函数
+
+这里的IO不是GPIO，是输入输出的那个。
+
+I/O有两个概念：`IO端口`和`IO内存`
+
+> - **IO内存：IO内存又称为Memory-Mapped I/O(MMIO)，该IO空间处在CPU空间范围内，IO内存和普通的内存没什么区别，两者都是通过CPU的地址总线和控制总线发送电平信号进行访问，再通过数据总线读写数据。要想操纵该IO就得首先将该IO映射到CPU的地址中，然后就可以访问该IO，如同访问内存。大多数嵌入式设备都属于此。**
+>
+> - **IO端口：又称为Port(PIO),该IO的空间与CPU空间相互独立，两者互相独立，相互不干扰，这种类型IO在X86中比较常见，该IO端口有独立的空间，所以CPU要想访问该端口就得通过一些专有函数或者指令。**
+>
+>   [IO 端口和IO 内存（原理篇） - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/579146985)
+>
+>   [IO 端口和IO 内存（原理篇）_io内存和io端口的区别_Huo的藏经阁的博客-CSDN博客](https://zhikunhuo.blog.csdn.net/article/details/114600308)
+>
+>   很明显我没看懂，但是估计是一系列很难搞掂的东西
+
+但是没关系，ARM只有IO内存这一说
+
+:::warning
+
+虽说IO内存只要映射之后就操作内存直接用指针访问这些地址，但Linux内核不推荐这么做（idk啊
+
+推荐使用一组操作对映射后的内存访问
+
+1. 读操作
+
+   ```c
+   u8  readb(const volatile void __iomem *addr)
+   u16 readw(const volatile void __iomem *addr)
+   u32 readl(const volatile void __iomem *addr)
+   ```
+
+2. 写
+
+   ```c
+   void writeb(u8 value, volatile void __iomem *addr)
+   void writew(u16 value, volatile void __iomem *addr)
+   void writel(u32 value, volatile void __iomem *addr)
+   ```
+
+:::
 
 
 
