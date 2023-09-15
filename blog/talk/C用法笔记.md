@@ -7,6 +7,10 @@ tags: [随笔, 杂谈, C]
 keywords: [随笔, 杂谈,C]
 ---
 
+
+
+<!-- truncate -->
+
 ## U-boot
 
 ### 8.19
@@ -39,4 +43,26 @@ keywords: [随笔, 杂谈,C]
    }
    ```
 
-   
+
+## Linux
+
+### THIS_MODULE
+
+```c
+#define THIS_MODULE ((struct module *)0)
+
+static struct file_operations led_fops = {
+    .owner = THIS_MODULE,
+    .open = led_open,
+    .read = led_read,
+    .write = led_write,
+    .release = led_release,
+};
+```
+
+这是文件的fop结构体，重点在`THIS_MODULE`宏
+
+这个字段说明谁是`struct file_operations`的所有者。这可以防止模块在运行时被卸载。当初始化为`THIS_MODULE`时，当前模块拥有其所有权。
+
+可能和我想象中的不一样吧
+
