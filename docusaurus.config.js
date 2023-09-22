@@ -79,7 +79,10 @@ const config = {
               label: '归档',
               to: 'archive',
             },
-            
+            {
+              label: '英语',
+              to: 'docs/english/',
+            },
             // {
             //   label: '工具推荐',
             //   to: 'docs/tools/',

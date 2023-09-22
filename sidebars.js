@@ -409,6 +409,9 @@ const sidebars = {
     //   ],
     // },
   ],
+  english: [
+    'english/cet_long_difficult_sentence',
+  ],
   stm32: [
     'stm32/introduction',
     'stm32/uart-send-recv',
@@ -425,7 +428,8 @@ const sidebars = {
   ],
   // esp32: [
   //   'stm32/introduction',
-  // ]
+  // ],
+
 }
 
 module.exports = sidebars

@@ -1237,3 +1237,121 @@ module_exit(led_exit);
 在Documentation/devicetree/bindings，有很多txt用来说明节点的信息
 
 #### 设备树常用  OF 操作函数
+
+Linux提供一系列`of_`前缀的函数用于获取设备树节点/属性信息
+
+用`device_node`结构体描述节点信息
+
+1. **of_find_node_by_name**函数
+
+   ```c
+   struct device_node *of_find_node_by_name(struct device_node  *from,const char *name)
+   ```
+
+2. **of_find_compatible_node**函数
+
+   根据device_type和compatible，from为开始查找的节点，如果NULL就找整个设备树
+
+   ```c
+   struct device_node *of_find_compatible_node(struct device_node *from,
+   										const char *type,
+   										const char *compatible)
+   ```
+
+3. **of_find_node_by_type** 函数
+
+   根据device_type 属性查找指定的节点
+
+   ```c
+   struct device_node *of_find_node_by_type(struct device_node *from, const char *type)
+   ```
+
+4. **of_find_matching_node_and_match** 函数
+
+   ```c
+   struct device_node *of_find_matching_node_and_match(struct device_node             *from,
+   const struct of_device_id  *matches, 
+   const struct of_device_id **match)
+   ```
+
+   根据of_device_id匹配表查找指定节点（matches
+
+5. **of_find_node_by_path** 函数
+
+   根据path来找（such as /backlight
+
+
+
+
+
+
+
+**查找父/子节点的OF函数**
+
+1. of_get_parent(device_node *node)
+2. of_get_next_child(device_node *node , device_node *prev)（父节点，前一个子节点，也就是从哪一个子节点开始迭代的查找下一个子节点）
+
+
+
+**提取属性值的OF函数**、定义在文件  include/linux/of.h 中
+
+```c
+struct property {
+	char	*name;
+	int	length;
+	void	*value;
+	struct property *next;
+	unsigned long _flags;
+	unsigned int unique_id;
+	struct bin_attribute attr;
+};
+```
+
+1. **of_find_property** 函数，查找特定的属性
+
+   ```c
+   struct property *of_find_property(const struct device_node *np,
+   					 const char *name,
+   					 int *lenp);
+   ```
+
+   np：设备节点，name：属性名字，lenp：属性的字节数
+
+2. **of_property_count_elems_of_size** 函数，获取属性中元素的数量
+
+   （设备节点node，属性名，元素长度（这个居然不是指针？？？）
+
+3. 还有好多建议自己查
+
+
+
+1. of_address_to_resource 函数
+
+   内核使用 **resource** 结构体来描述一段内存空间
+
+   ```c
+   struct resource {
+   	resource_size_t start;
+   	resource_size_t end;
+   	const char *name;
+   	unsigned long flags;//资源标志位，具体宏定义也在include/linux/ioport.h 
+   	struct resource *parent, *sibling, *child;
+   };
+   ```
+
+2. of_iomap
+
+
+
+结束力
+
+:::tip
+
+这些函数都是要被驱动文件所用的，要读取设备树中的属性信息，比如内存信息、GPIO 信息、中断信息等等
+
+:::
+
+
+
+
+
