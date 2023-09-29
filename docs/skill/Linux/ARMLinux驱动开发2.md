@@ -604,3 +604,225 @@ struct mutex {
 3. 因为一次只有一个线程可以持有  mutex，因此，必须由  mutex 的持有者释放  mutex。并且  mutex 不能递归上锁和解锁
 
 ![image-20230922155642229](https://pic.imgdb.cn/item/650d48bcc458853aef35474d)
+
+
+
+
+
+### 实例
+
+#### 原子锁
+
+```c
+static int led_open(struct inode *inode, struct file *filp) {
+  //判断原子变量的值来检查 LED 有没有被别的应用使用
+  if(!atomic_dec_and_test(&gpio_led.lock)){
+    //小于 0 的话就加 1,使其原子变量等于 0
+    atomic_inc(&gpio_led.lock);
+    return -EBUSY;
+  }
+
+  filp->private_data = &gpio_led;
+  return 0;
+}
+
+static int __init led_init(void)
+{
+   int ret = 0;
+   /* 初始化原子变量   */
+   atomic_set(&gpioled.lock, 1);  /* 原子变量初始值为 1 */
+```
+
+每次用`atomic_dec_and_test`函数将lock-1，如果返回值为true就说明lock==0
+
+说明是只有一个人用
+
+如果返回false，就说明是负的，上面函数-1之后在用atomic_inc+1，使其变回0
+
+
+
+#### 自旋锁
+
+```c
+
+static int led_open(struct inode *inode, struct file *filp) {
+    unsigned long flags;
+
+    filp->private_data = &gpio_led;
+
+    // 上锁
+    spin_lock_irqsave(&gpio_led.lock, flags);
+    if (gpio_led.dev_stats) {//如果设备被使用了
+        spin_unlock_irqrestore(&gpio_led.lock, flags); /* 解锁 */
+        return -EBUSY;
+    }
+    gpio_led.dev_stats++; /* 如果设备没有打开，那么就标记已经打开了 */
+    spin_unlock_irqrestore(&gpio_led.lock, flags); /* 解锁   */
+    return 0;
+}
+
+static int led_release(struct inode *inode, struct file *filp) {
+    struct gpioled_dev *dev = filp->private_data;
+    unsigned long flags;
+    /* 关闭驱动文件的时候将 dev_stats 减 1 */
+    spin_lock_irqsave(&dev->lock, flags);  /* 上锁    */
+
+    if (dev->dev_stats){
+        dev->dev_stats--;
+    }
+
+    spin_unlock_irqrestore(&gpio_led.lock, flags);
+    return 0;
+}
+
+static int __init led_init(void) {
+//初始化自旋锁
+  spin_lock_init(&gpio_led.lock);
+
+```
+
+`dev_status`>0代表设备占用
+
+感觉写的还不是很优雅，可能OS课上的解法更加elegant
+
+#### 信号量
+
+```c
+#include <linux/semaphore.h>
+static int led_open(struct inode *inode, struct file *filp) {
+
+    filp->private_data = &gpio_led;
+    /* 获取信号量,sem-1<0 */
+    if (down_interruptible(&gpio_led.sem)) {
+        return -ERESTARTSYS;
+    }
+	//或者用down();
+    return 0;
+}
+static int led_release(struct inode *inode, struct file *filp) {
+    struct gpioled_dev *dev = filp->private_data;
+
+    up(&gpio_led.sem);//释放信号量，信号量值+1
+
+    return 0;
+}
+
+static int __init led_init(void) {
+  //初始化自旋锁
+  sema_init(&gpio_led.sem, 1);
+
+```
+
+怎么解释呢？
+
+led_open尝试后，第一个来down的会将sem=1的-1，成功获取信号量后返回0，跳过if
+
+如果sem=0将会把线程/任务`睡眠`，等待信号量的到来
+
+有信号量（release后）才会返回0
+
+如果睡眠过程中被信号中断，会返回-EINTR
+
+#### 互斥量
+
+```c
+static int led_open(struct inode *inode, struct file *filp) {
+
+    filp->private_data = &gpio_led;
+    /* 获取互斥体,可以被信号打断    */
+    if(rt_mutex_lock_interruptible(&gpio_led.lock)){
+      return -ERESTARTSYS;
+    }
+
+// mutex_lock(&gpio_led.lock);//不能被信号打断  
+
+    return 0;
+}
+
+
+static int led_release(struct inode *inode, struct file *filp) {
+    struct gpioled_dev *dev = filp->private_data;
+    //解锁
+    mutex_unlock(&gpio_led.lock);
+
+    return 0;
+}
+static int __init led_init(void) {
+
+  mutex_init(&gpio_led.lock);
+
+```
+
+## 定时器
+
+linux内核用全局变量jiffies来记录系统从启动以来的系统节拍数
+
+节拍频率有100-1000不等
+
+时钟源可能是cortexa7里的通用定时器
+
+> 关于`jiffies`节拍变量溢出问题，linux可能有种机制叫`绕回`，32位的大概花49.7天（1000Hz）
+>
+> ![image-20230926200808971](https://pic.imgdb.cn/item/6512c9b0c458853aeff12fde)
+>
+> 如果unkown超过了known，time_after会返回真，相反time_before会返回假
+>
+> eq是加了=这个条件
+>
+> 所以只要用这个API就可以判断程序是否超时
+
+#### jiffies与ms/us/ns转换函数
+
+![image-20230926201302481](https://pic.imgdb.cn/item/6512cacec458853aeff1b732)
+
+### 内核定时器
+
+只需要提供`超时时间`(相当于定时值)和`定时处理函数`即可
+
+不过这玩意超时后会自动关闭，需要重新开启才能周期性计时
+
+linux用`timer_list`来表示内核定时器
+
+```c
+struct timer_list {
+	/*
+	 * All fields that change during normal runtime grouped to the
+	 * same cacheline
+	 */
+	struct list_head entry;
+	unsigned long expires;	//超时时间，单位是节拍数
+	struct tvec_base *base;
+
+	void (*function)(unsigned long);//定时处理函数
+	unsigned long data;	//传递给function的的参数
+
+	int slack;
+
+#ifdef CONFIG_TIMER_STATS
+	int start_pid;
+	void *start_site;
+	char start_comm[16];
+#endif
+#ifdef CONFIG_LOCKDEP
+	struct lockdep_map lockdep_map;
+#endif
+};
+```
+
+how to use?
+
+先定义一个这个struct，然后`init_timer（）`
+
+设置好超时时间expires = jffies + msecs_to_jiffies(2000);/* 超时时间 2 秒 */
+
+和超时处理函数
+
+然后想内核注册定时器`add_timer()`，此刻就会马上运行
+
+之后删除用`del_timer()`，或者`del_timer_sync()`
+
+
+
+#### 内核短延时函数
+
+![image-20230926204419406](https://pic.imgdb.cn/item/6512d223c458853aeff303d3)
