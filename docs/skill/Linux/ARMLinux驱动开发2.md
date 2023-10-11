@@ -826,3 +826,453 @@ how to use?
 #### 内核短延时函数
 
 ![image-20230926204419406](https://pic.imgdb.cn/item/6512d223c458853aeff303d3)
+
+## 中断
+
+先回顾一下裸机里面中断的处理方法： 
+
+1. 使能中断，初始化相应的寄存器
+2. 注册中断服务函数，也就是向 ` irqTable `数组的指定标号处写入`中断服务函数`
+3. 中断发生以后进入`  IRQ 中断服务函数`，在 IRQ 中断服务函数在数组  irqTable 里面查找 
+
+具体的中断处理函数，找到以后执行相应的中断处理函数。
+
+在 Linux 内核中也提供了大量的中断相关的   API  函数，我们来看一下这些跟中断有关的 API 函数
+
+
+
+#### request_irq 函数
+
+中断申请，会导致睡眠，所以**不能**在**中断上下文**或者**其他禁止睡眠**的代码段中使用 request_irq 函数。
+
+request_irq 函数会激活(使能)中断，所以不需要我们手动去使能中断
+
+```c
+int request_irq(
+    unsigned int irq, 
+    irq_handler_t  handler, 
+    unsigned long flags, 
+    const char *name, 
+    void *dev);
+```
+
+1. 中断号
+
+2. 中断处理函数
+
+3. 中断标志？在文件  include/linux/interrupt.h 里面查看所有的中断标志
+
+   ![image-20231006205530952](https://pic.imgdb.cn/item/652003cbc458853aefcc30a4)
+
+4. `name`：中断名，在/proc/interrupts看到中断名
+
+5. `dev`：如果将  flags 设置为  IRQF_SHARED 的话，dev 用来区分不同的中断，一般情况下将 dev 设置为设备结构体，dev 会传递给中断处理函数  irq_handler_t 的第二个参数
+
+
+
+#### free_irq
+
+顾名思义
+
+#### 中断处理函数
+
+```c
+irqreturn_t (*irq_handler_t) (int, void *)
+```
+
+中断号，不知道
+
+返回类型
+
+```c
+enum irqreturn {
+	IRQ_NONE		= (0 << 0),//interrupt was not from this device
+	IRQ_HANDLED		= (1 << 0),//interrupt was handled by this device
+	IRQ_WAKE_THREAD		= (1 << 1),//handler requests to wake the handler thread
+};
+
+typedef enum irqreturn irqreturn_t;
+```
+
+一般中断返回类型是：
+
+```c
+return IRQ_RETVAL(IRQ_HANDLED)
+```
+
+#### 中断使能与禁止
+
+```c
+void enable_irq(unsigned int irq) 
+void disable_irq(unsigned int irq)
+```
+
+指定中断号
+
+`disable_irq`要等到当前的执行的中断处理函数执行完才返回
+
+所以需要保证不会产生下一个中断，并且处理函数已经全部完成
+
+所以可以用另一个
+
+```c
+void disable_irq_nosync(unsigned int irq)
+```
+
+
+
+关闭整个中断
+
+```c
+local_irq_enable() 
+local_irq_disable()
+```
+
+
+
+:::warning
+
+有点没懂一个
+
+```c
+local_irq_save(flags) 
+local_irq_restore(flags)
+```
+
+这两个函数是一对，local_irq_save 函数用于禁止中断，并且将中断状态保存在flags 中。
+
+local_irq_restore 用于恢复中断，将中断到  flags 状态。
+
+> 实际用途是？怎么用？
+
+:::
+
+#### 上半部与下半部
+
+上半部：上半部就是中断处理函数，那些处理过程比较快，不会占用很长时间的处理就可以放在上半部完成。
+
+> 上半部：快进快出，只对flag处理，数据不做处理，可以拷贝内存
+
+下半部：如果中断处理过程比较耗时，那么就将这些比较耗时的代码提出来，交给下半部去执行，这样中断处理函数就会快进快出。
+
+> 下半部：处理耗时部分
+
+1. 如果要处理的内容不希望被其他中断打断，那么可以放到上半部
+2. 如果要处理的任务对时间敏感，可以放到上半部
+3. 如果要处理的任务与硬件有关，可以放到上半部
+4. 除了上述三点以外的其他任务，优先考虑放到下半部
+
+Linux内核提供多种下半部机制
+
+1. `软中断`：开始 Linux 内核提供了“bottom half”机制来实现下半部，简称“BH”。后面引入了软中断和 tasklet 来替代“BH”机制，完全可以使用软中断和 tasklet 来替代 BH，从 2.5 版本的 Linux 内核开始 BH 已经被抛弃了。
+
+   用`softirq_action`来表示软中断
+
+   ```c
+   433 struct softirq_action
+   434 {
+   435 void (*action)(struct softirq_action *);
+   436 };
+   ```
+
+   在  kernel/softirq.c 文件中一共定义了 10 个软中断
+
+   ```c
+   static struct softirq_action softirq_vec[NR_SOFTIRQS];
+   enum
+   {
+       HI_SOFTIRQ=0,	//高级软中断
+       TIMER_SOFTIRQ,	//定时器软中断
+       NET_TX_SOFTIRQ,//网络数据发送软中断
+       NET_RX_SOFTIRQ, 
+       BLOCK_SOFTIRQ, 	
+       BLOCK_IOPOLL_SOFTIRQ, 
+       TASKLET_SOFTIRQ,	//tasklet软中断 
+       SCHED_SOFTIRQ, 	//调度软中断
+       HRTIMER_SOFTIRQ, //高精度定时器软中断
+       RCU_SOFTIRQ,	//RCU软中断
+       NR_SOFTIRQS	
+   };
+   ```
+
+   数组 softirq_vec 是个全局数组，因此所有的 CPU(对于 SMP 系统而言)都可以访问到，每个 CPU 都有自己的触发和控制机制，并且只执行自己所触发的软中断
+
+   但是各个CPU执行的软中断服务函数都是一样的，都是action函数
+
+   要使用软中断，必须先使用 open_softirq 函数注册对应的软中断处理函数
+
+   ```c
+   void open_softirq(int nr,  void (*action)(struct softirq_action *))
+   ```
+
+   1. nr是上面的枚举类型
+   2. 处理函数
+
+   注册好软中断以后需要通过 raise_softirq 函数触发
+
+   ```c
+   void raise_softirq(unsigned int nr)
+   ```
+
+   软 中 断 必 须 在 编 译 的 时 候 静 态 注 册！Linux内核使用    softirq_init函数初始化软中断 ，softirq_init 函数定义在  kernel/softirq.c 文件里面
+
+   softirq_init会默认开启TASKLET_SOFTIRQ和HI_SOFTIRQ中断
+
+2. `tasklet`：利用软中断来实现的另外一种下半部机制，在软中断和  tasklet 之间，建议使用  tasklet。Linux 内核使用  tasklet_struct 结构体来表示  tasklet
+
+   ![image-20231007093433464](https://pic.imgdb.cn/item/6520b5b1c458853aef056e29)
+
+   初始化tasklet_struct：
+
+   ```c
+   void tasklet_init(struct tasklet_struct *t,void (*func)(unsigned long), unsigned long  data);
+   ```
+
+   也可以使用宏DECLARE_TASKLET来一次性完成 tasklet的定义和初始化， DECLARE_TASKLET 定义在  include/linux/interrupt.h 文件中
+
+   ```c
+   DECLARE_TASKLET(name, func, data)
+   ```
+
+   在上半部，也就是中断处理函数中`调用  tasklet_schedule 函数`就能使  **tasklet 在合适的时间运行**
+
+   ```c
+   void tasklet_schedule(struct tasklet_struct *t)
+   ```
+
+   t是要调度的tasklet，也就是上面的name
+
+   示例程序
+
+   ```c
+   /* 定义 tasklet*/
+   struct tasklet_struct testtasklet;
+   
+   /* tasklet 处理函数 */
+   void testtasklet_func(unsigned long data) 
+   {
+   	/* tasklet 具体处理内容    */
+   }
+   /* 中断处理函数    */
+   irqreturn_t test_handler(int irq, void *dev_id) 
+   {
+   	......
+   	/* 调度 tasklet       */ 
+   	tasklet_schedule(&testtasklet);
+   	...... 
+   }
+   /* 驱动入口函数*/
+   static int __init xxxx_init(void) 
+   {
+       /* 初始化 tasklet  */
+       tasklet_init(&testtasklet, testtasklet_func, data);
+       /* 注册中断处理函数 */
+       request_irq(xxx_irq, test_handler, 0, "xxx", &xxx_dev);
+       
+   }
+   ```
+
+3. `工作队列`：是另外一种下半部执行方式，工作队列在**进程上下文执行**，工作队列将要推后的 
+   工作**交给一个内核线程去执行**，因为工作队列工作在进程上下文，因此工作队列允许睡眠或重 
+   新调度。因此如果你要推后的工作可以睡眠那么就可以选择工作队列，否则的话就只能选择软 
+   中断或 tasklet
+
+   ```c
+   struct work_struct {
+   	atomic_long_t data; 
+   	struct list_head entry;
+   	work_func_t func;	/* 工作队列处理函数 */
+   };
+   ```
+
+   这些工作组织成工作队列，工作队列使用  workqueue_struct 结构体表示
+
+   ```c
+   struct workqueue_struct {
+   	struct list_head    pwqs;
+   	struct list_head    list;
+   	struct mutex        mutex;
+   	int       work_color;
+       int       flush_color;
+   	atomic_t        nr_pwqs_to_flush;
+       struct wq_flusher  *first_flusher;
+   	struct list_head    flusher_queue;
+   	struct list_head    flusher_overflow;
+   	struct list_head    maydays;
+   	struct worker      *rescuer; 
+   	int       nr_drainers;
+   	int       saved_max_active;
+   	struct workqueue_attrs *unbound_attrs; 
+   	struct pool_workqueue  *dfl_pwq;
+   	char         name[WQ_NAME_LEN]; 
+   	struct rcu_head     rcu;
+   	unsigned int      flags ____cacheline_aligned; 
+   	struct pool_workqueue __percpu *cpu_pwqs; 
+   	struct pool_workqueue __rcu *numa_pwq_tbl[];
+   };
+   ```
+
+   Linux 内核使用工作者线程(worker thread)来处理工作队列中的各个工作，Linux 内核使用worker 结构体表示工作者线程，worker ：
+
+   ```c
+   struct worker { 
+   	union {
+   		struct list_head    entry; 
+   		struct hlist_node   hentry;
+   	};
+   	struct work_struct *current_work; 
+   	work_func_t     current_func;
+   	struct pool_workqueue  *current_pwq; 
+   	bool         desc_valid;
+   	struct list_head    scheduled;
+   	struct task_struct *task;
+   	struct worker_pool *pool;
+   	struct list_head    node; 
+   	unsigned long     last_active; 
+   	unsigned int      flags;
+   	int       id;
+   	char desc[WORKER_DESC_LEN]; 
+   	struct workqueue_struct *rescue_wq;
+   };
+   ```
+
+   在实际的驱动开发中，我们**只需要定义工作(work_struct)即可**，关于工作队列和工作者线程我们基本不用去管。简单创建工作很简单，直接定义一个 work_struct 结构体变量即可，然后使用 INIT_WORK 宏来初始化工作，INIT_WORK 宏定义如下：
+
+   ```c
+   #define INIT_WORK(_work, _func)
+   ```
+
+   也可以使用 DECLARE_WORK 宏一次性完成工作的创建和初始化，宏定义如下：
+
+   ```c
+   #define DECLARE_WORK(n, f)
+   ```
+
+   和  tasklet 一样，工作也是需要调度才能运行的，工作的调度函数为  schedule_work，函数原 
+   型如下所示：
+
+   ```c
+   bool schedule_work(struct work_struct *work)
+   ```
+
+   测试：
+
+   ```c
+   /* 定义工作(work) */ 
+   struct work_struct testwork;
+   /* work 处理函数 */
+   void testwork_func_t(struct work_struct *work); 
+   {
+   	/* work 具体处理内容 */
+       
+   }
+   /* 中断处理函数 */
+   irqreturn_t test_handler(int irq, void *dev_id) 
+   {
+   	......
+   	/* 调度 work          */ 
+   	schedule_work(&testwork);
+   	...... 
+   }
+   /* 驱动入口函数
+   static int __init xxxx_init(void) 
+   {
+       ......
+   	/* 初始化 work         */
+   	INIT_WORK(&testwork, testwork_func_t); 
+   	/* 注册中断处理函数                       */
+   	request_irq(xxx_irq, test_handler, 0, "xxx", &xxx_dev);
+   	...... 
+   }
+   ```
+
+   #### `设备树中断节点信息`
+
+   设备树绑定信息参考文档：Documentation/devicetree/bindings/arm/gic.txt
+
+   突然发现他们的文档其实是非常全的
+
+   主要关注几个
+
+   1. imx6ull.dts里的
+
+      ```c
+      	intc: interrupt-controller@00a01000 {
+      		compatible = "arm,cortex-a7-gic";
+      		#interrupt-cells = <3>;
+      		interrupt-controller;
+      		reg = <0x00a01000 0x1000>,
+      		      <0x00a02000 0x100>;
+      	};
+      	gpio5: gpio@020ac000 {
+      				compatible = "fsl,imx6ul-gpio", "fsl,imx35-gpio";
+      				reg = <0x020ac000 0x4000>;
+      				interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
+      					     <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
+      				gpio-controller;
+      				#gpio-cells = <2>;
+      				interrupt-controller;
+      				#interrupt-cells = <2>;
+      			};
+      ```
+
+   2. imx6ull-al...
+
+      ```c
+      	fxls8471@1e {
+      		compatible = "fsl,fxls8471";
+      		reg = <0x1e>;
+      		position = <0>;
+      		interrupt-parent = <&gpio5>;
+      		interrupts = <0 8>;
+      	};
+      ```
+
+#interrupt-cells 表示中断控制器下的cells大小，每一个cells都是32位的
+
+第一个 cells：中断类型，0 表示  SPI 中断，1 表示  PPI 中断
+
+第二个  cells：中断号，对于  SPI 中断来说中断号的范围为  0~987，对于  PPI 中断来说中断 
+号的范围为  0~15
+
+第三个 cells：标志，bit[3:0]表示中断触发类型，为 1 的时候表示上升沿触发，为 2 的时候表示下降沿触发，为 4 的时候表示高电平触发，为 8 的时候表示低电平触发。bit[15:8]为 PPI 中断的 CPU 掩码
+
+第一个的cells必须为3
+
+但是到了第二个是2
+
+
+
+看gpio5
+
+> 	interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
+> 			<GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
+
+74 75 表示中断源，一个是 74，一个是 75
+
+![image-20231007220604131](https://pic.imgdb.cn/item/652165ccc458853aef786a2e)
+
+74是gpio5前16个，75是后16个
+
+interrupts = <0 8>;表示指定中断号，中断方式（0是0中断号，8是fsl指定的触发方式，比如说上升沿触发
+
+#### 获取中断号
+
+```c
+unsigned int irq_of_parse_and_map(struct device_node *dev,int index);
+```
+
+设备节点，索引号，返回中断号
+
+
+
+但是gpio的更简单
+
+```c
+int gpio_to_irq(unsigned int gpio)
+```
+
+返回irq号
+
+
+
