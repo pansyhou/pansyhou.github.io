@@ -416,6 +416,8 @@ const sidebars = {
   ],
   english: [
     'english/cet_long_difficult_sentence',
+    'english/cet_reading',
+    'english/cet_listening'
   ],
   stm32: [
     'stm32/introduction',
