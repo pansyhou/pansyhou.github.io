@@ -426,12 +426,19 @@ const sidebars = {
     'stm32/arm_dev_note',
     'stm32/22_embedded_task',
     'stm32/upgrade-your-fuxking-compiler',
-
   ],
   ros: [
     'ros/two_degree_arm',
     'ros/wsl2_ros',
     'ros/ros_control'
+  ],
+  Android: [
+      'Android/introduction',
+      'Android/lte_nr',
+      'Android/camara',
+      'Android/touchscreen',
+      'Android/gps',
+      'Android/sensor',
   ],
   // esp32: [
   //   'stm32/introduction',

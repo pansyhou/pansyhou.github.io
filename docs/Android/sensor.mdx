@@ -1,0 +1,236 @@
+---
+id: sensor
+slug: /sensor
+date : 2023-11-11
+title: rk安卓 传感器sensor适配
+authors: pansyhou
+---
+
+## 选型
+
+甲方的需求是做出来需要类似AW的摔倒检测
+
+需要高动态
+
+大概可能是需要高量程（比如acc+-32g?
+
+但是因为项目时间需求我还是向`mpu6050`妥协（但是最后还是烂了
+
+> 别问我为什么选中这家伙
+>
+> [安卓RK3399编译驱动MPU6050，实现内核层与HAL层驱动_适合研究android hal的开发板-CSDN博客](https://blog.csdn.net/qq_35158197/article/details/128165092?ops_request_misc=%7B%22request%5Fid%22%3A%22169934820516800192268794%22%2C%22scm%22%3A%2220140713.130102334.pc%5Fall.%22%7D&request_id=169934820516800192268794&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-2-128165092-null-null.142^v96^pc_search_result_base5&utm_term=rk3568 android mpu6050&spm=1018.2226.3001.4187)
+>
+> [ROC-RK3308-CC开发实例总结--MPU6050运动处理传感器模块调试-CSDN博客](https://blog.csdn.net/weixin_33734785/article/details/93221286?ops_request_misc=&request_id=&biz_id=102&utm_term=rk3568 android mpu6050&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-7-93221286.142^v96^pc_search_result_base5&spm=1018.2226.3001.4187)
+>
+> 我一搜RK 的kernel SDK，哎，确实是有驱动可以probe的，买它
+>
+> ...
+>
+> 谨慎用适配linux的思路选型，如果你要开发速度快的话
+
+## 踩坑
+
+```
+rk3568_lubancat_2_v2_hdmi:/ $ dmesg | grep mpu
+[    1.237727] inv-mpu6050-i2c 3-0068: mounting matrix not found: using identity...
+[    1.237749] inv-mpu6050-i2c 3-0068: Could not find IRQ 0
+[    1.237812] inv-mpu6050-i2c: probe of 3-0068 failed with error -22
+```
+
+能看到目前是能正确进入他的初始化函数的
+
+但是，为什么获取不到irq呢，whyyyyyy
+
+最后调整dts
+
+```
+&i2c3 {
+    status = "okay";
+    pinctrl-names = "default";
+    pinctrl-0 = <&i2c3m0_xfer>;     //使用GPIO0_A1和GPIO0_A0复用为I2C3引脚
+    #address-cells = <1>;
+    #size-cells = <0>;
+	clock-frequency = <400000>;//需要配置为400kHz,要不然的话i2cdetect的时候0x68不稳定
+    mpu6050@68 { 
+        compatible = "invensense,mpu6050";
+        reg = <0x68>;
+        status = "okay";
+		mpu-int_config = <0>;
+		mpu-level_shifter = <0>;
+		mpu-orientation = <1 0 0 0 1 0 0 0 1>;
+		interrupt-parent = <&gpio0>;
+		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
+		irq-gpios = <&gpio0 RK_PB0 IRQ_TYPE_LEVEL_LOW>;
+		orientation-x = <0>;
+		orientation-y = <1>;
+		orientation-z = <1>;
+			mount-matrix = "-0.984807753012208",  /* x0 */
+				"0",                   /* y0 */
+				"-0.173648177666930",  /* z0 */
+				"0",                   /* x1 */
+				"-1",                  /* y1 */
+				"0",                   /* z1 */
+				"-0.173648177666930",  /* x2 */
+				"0",                   /* y2 */
+				"0.984807753012208";   /* z2 */
+		support-hw-poweroff = <0>;
+		mpu-debug = <1>;
+    };
+};
+```
+
+锁定在了
+
+```
+		interrupt-parent = <&gpio0>;
+		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
+		irq-gpios = <&gpio0 RK_PB0 IRQ_TYPE_LEVEL_LOW>;
+```
+
+> 其实在加入前两行的时候，*dmesg | grep mpu* 后关于mpu的log都没有了，以为寄了
+>
+> 但是我后面去看iio设备的时候才发现已经注册上了
+>
+> ` ls /sys/bus/iio/devices`，有了trigger就注册好中断了
+
+but good new is，我已经打通了linux并成功获得数据了，但是仅限自己cat出来，明天看看能不能打通hal层（总感觉这玩意缺斤少两，怎么下面的文件比网上的要少
+
+```
+rk3568_lubancat_2_v2_hdmi:/ # ls /sys/bus/iio/devices/iio\:device1/
+buffer                    in_accel_y_calibbias        in_anglvel_y_calibbias  of_node
+current_timestamp_clock   in_accel_y_raw              in_anglvel_y_raw        power
+dev                       in_accel_z_calibbias        in_anglvel_z_calibbias  sampling_frequency
+in_accel_matrix           in_accel_z_raw              in_anglvel_z_raw        sampling_frequency_available
+in_accel_mount_matrix     in_anglvel_mount_matrix     in_gyro_matrix          scan_elements
+in_accel_scale            in_anglvel_scale            in_temp_offset          subsystem
+in_accel_scale_available  in_anglvel_scale_available  in_temp_raw             trigger
+in_accel_x_calibbias      in_anglvel_x_calibbias      in_temp_scale           uevent
+in_accel_x_raw            in_anglvel_x_raw            name
+```
+
+
+
+CSDN:（会多点enable的东西
+
+```
+rk3399_mid:/sys/bus/iio/devices/iio:device0 # ls
+accl_enable            event_display_orientation in_accel_z_calibbias   quaternion_on                smd_delay_threshold2
+accl_matrix            event_smd                 in_accel_z_offset      reg_dump                     smd_enable
+buffer                 firmware_loaded           in_anglvel_scale       sampling_frequency           smd_threshold
+dev                    gyro_enable               in_anglvel_x_calibbias sampling_frequency_available subsystem
+display_orientation_on gyro_matrix               in_anglvel_y_calibbias scan_elements                temperature
+dmp_event_int_on       in_accel_scale            in_anglvel_z_calibbias secondary_name               trigger
+dmp_firmware           in_accel_x_calibbias      name                   self_test                    uevent
+dmp_int_on             in_accel_x_offset         of_node                self_test_samples
+dmp_on                 in_accel_y_calibbias      power                  self_test_threshold
+dmp_output_rate        in_accel_y_offset         power_state            smd_delay_threshold
+```
+
+
+
+在摇晃陀螺仪时cat数据，不动时加速度稳定：
+
+```
+rk3568_lubancat_2_v2_hdmi:/ # cat /sys/bus/iio/devices/iio\:device1/in_accel_y
+in_accel_y_calibbias    in_accel_y_raw
+at /sys/bus/iio/devices/iio\:device1/in_accel_y_raw                                                                   <
+31630
+at /sys/bus/iio/devices/iio\:device1/in_accel_y_raw                                                                   <
+6654
+at /sys/bus/iio/devices/iio\:device1/in_accel_y_raw                                                                   <
+7336
+at /sys/bus/iio/devices/iio\:device1/in_accel_y_raw                                                                   <
+7026
+at /sys/bus/iio/devices/iio\:device1/in_accel_y_raw                                                                   <
+17042
+at /sys/bus/iio/devices/iio\:device1/in_accel_y_raw                                                                   <
+-32768
+at /sys/bus/iio/devices/iio\:device1/in_accel_y_raw                                                                   <
+32767
+at /sys/bus/iio/devices/iio\:device1/in_accel_y_raw                                                                   <
+26704
+```
+
+证明内核已经驱动成功了，剩下hal
+
+> 但是万万没想到hal才是最难的
+
+1. ![image-20231111181338663](https://pic.imgdb.cn/item/654f53dac458853aefbaece5)
+
+2. 然后尝试在正点原子的a11下面编译，出现了部分好转
+
+3. ```shell
+   [ 98% 274/279] including vendor/rockchip/hardware/65xx/Android.mk ...
+   FAILED: 
+   In file included from build/make/core/prebuilt.mk:53:
+   In file included from vendor/rockchip/hardware/65xx/Android.mk:2:
+   In file included from vendor/rockchip/hardware/65xx/libsensors_iio/Android.mk:167:
+   build/make/core/shared_library.mk:16: error: sensors.rk3566_r: LOCAL_MODULE_PATH for shared libraries is unsupported in multiarch builds, use LOCAL_MODULE_RELATIVE_PATH instead.
+   18:22:38 ckati failed with: exit status 1
+   
+   #### failed to build some targets (57 seconds) ####
+   ```
+
+4. 开始魔改LOCAL_MODULE_PATH
+
+5. 然后又说我缺libinvensense_hal.so
+
+6. 。。。
+
+7. > 原话：
+   > ![image-20231111182555306](https://pic.imgdb.cn/item/654f56b4c458853aefc2ddfb)其实真没搞懂modifiy他那个Makefile脚本那步，到底怎么样才能include到htc/flounder那步
+   >
+   > 可能是把当前目录cp到65xx下，然后修改65xx大的makefile使得cp的文件夹也加入编译中
+   >
+   > 那这两个sharedlib就是同一个，不会缺`libinvensense_hal.so`
+
+8. 但是已经折腾了四天了，是时候破局了
+
+### 破局
+
+根据BoardConfig和sensor的mk来看，st和MPU_VR是互斥的，于是打算直接看看官方的support list或者其他方案
+
+```makefile
+# Sensors
+BOARD_SENSOR_ST := true
+BOARD_SENSOR_MPU_VR := false
+BOARD_SENSOR_MPU_PAD := false
+
+BOARD_USES_GENERIC_INVENSENSE := false
+```
+
+#### **RocketChip Sensor Hal**
+
+默认的st是能正常通过编译的
+
+> 代码路径：hardware/rockchip/sensor/st，支持最新的  SENSORS_DEVICE_API 
+> _VERSION_1_3 android sensors hal API 接口
+
+![image-20231111190434499](https://pic.imgdb.cn/item/654f5fc4c458853aefdee2fb)
+
+那上层的HAL层能够正常编译通过的话，那直接可以看kernel driver了
+
+#### Rockchip sensors kernel driver
+
+> 代码路径：kernel/drivers/input/sensors，其中   sensor-dev.c 是核心代码，整合 
+> 了不同类型的 sensor，包括  accel, gyro, lsensor, psensor, compass 等。
+
+通过翻看官方文档`Rockchip_Developer_Guide_Sensors_CN.pdf`
+
+其实文档与源码已经有点老了
+
+那就直接看源码
+
+![image-20231111190823048](https://pic.imgdb.cn/item/654f60a7c458853aefe19dc4)
+
+![image-20231111190758740](C:\Users\16771\AppData\Roaming\Typora\typora-user-images\image-20231111190758740.png)
+
+找到源码目录，发现有很多的支持了
+
+有我们的老顾客mpu6500、icm2060x
+
+也看到了正点原子支持的sh3001，我就说怎么淘宝没得卖也不是什么热门芯片为什么正点原子要用呢，教程也不带一个
+
+原来rk官方已经支持进去了
+
+剩余的就和之前适配设备树一样了，再加个类型、调整BoardConfig，使其开启

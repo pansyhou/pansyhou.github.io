@@ -104,6 +104,9 @@ const config = {
             {
               label: 'ROS',
               to: 'docs/ros/',
+            },{
+              label: 'Android',
+              to: 'docs/Android/',
             },
             // {
             //   label: 'ESP32',
