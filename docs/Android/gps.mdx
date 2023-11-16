@@ -1,5 +1,77 @@
 ---
 id: gps
 slug: /gps
-title: rk平台 gps安卓适配
+title: 鲁班猫2 rk3568安卓 GPS模块适配
 ---
+
+## 前言
+
+鲁班猫2野火本身没有单独的GPS模块
+
+假设你财力不够雄厚，买不起他们家的EC20（带GPS的，天线还要再加￥30
+
+那就单独买一个GPS模块吧
+
+
+
+## 选型
+
+:::tip
+
+基本上的GPS模块都是走`串口`的，报文协议其实`NMEA=0183`就可以
+
+:::
+
+firefly说有什么公版GPS的，还有些u-blox还有自家驱动的，我看了眼鲁班猫SDK压根没有
+
+[4. 无线模块 — Firefly Wiki (t-firefly.com)](https://wiki.t-firefly.com/zh_CN/ROC-RK3568-PC/module_wireless.html#delincomm-xi-lie)
+
+如果你财力雄厚也可以买公版的
+
+但是，大伙都是串口，SDK也没摸透，直接开盲盒
+
+
+
+于是淘宝我看到了个中科微的`ATGM336H`（30块，还是优信电子，速发=)
+
+
+
+## 适配
+
+参考文章如下：
+
+[RK3588 移植中科微GPS驱动-CSDN博客](https://blog.csdn.net/weixin_37636519/article/details/132509980)
+
+过程：
+
+### 设备树
+
+```
+&uart8{
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart8m1_xfer>;
+};
+```
+
+pinctrl记得看好是m0还是m1
+
+### hal层驱动
+
+1. 下载[中科微官方hal层驱动](https://github.com/zxcwhale/aosp13_gnss_hal)到源码的/vendor下面
+2. 修改串口TTY号、波特率（如果不知道的话可以设置好设备树后，`ls`出/dev/tty*有没有你的串口号，然后`stty -F /dev/ttyS8 -a  #ttyS8为要查看的串口`就可以看到实际波特率，假设你想看有没有正常发送报文，可以直接`cat /dev/ttyS8 #ttyS8为要查看的串口`
+3. 其他参数建议调通再调
+4. 进入到/vendor/aosp13_gnss_hal后`mm`，也可以`mmm vendor/aosp13_gnss_hal`，记得在source、lunch后再编译，如果不会单独模块的编译可以找一下教程
+5. 去看看out目录下的你的对应target的`/vendor/lib64/hw`下面有没有`gps.default`，有应该就编译好了
+
+
+
+### BoardConfig.mk
+
+在device/rockchip/rk356x下面找到BoardConfig.mk，找`BOARD_HAS_GPS`，如果是false调成true
+
+然后在`/device/rockchip/common`device.mk加入HAL层驱动（直接搜gnss，具体操作可以看上述文章教程[RK3588 移植中科微GPS驱动-CSDN博客](https://blog.csdn.net/weixin_37636519/article/details/132509980)
+
+剩下的就和上述的参考文章一样
+
+也建议用GPS TEST，好用的
