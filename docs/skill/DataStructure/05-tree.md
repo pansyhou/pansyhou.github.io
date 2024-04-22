@@ -6,6 +6,8 @@ title: 05-树与二叉树
 
 # 树与二叉树
 
+**Start from ‎2024‎年‎4‎月‎10‎日，‏‎8:12:01**
+
 ## 树的基本概念
 
 ![](https://pic.imgdb.cn/item/66168ad668eb935713de30d8.png)
@@ -226,3 +228,137 @@ n个结点、2n个指针域，每个结点带一个天线但是root无，所以�
 ![](https://pic.imgdb.cn/item/661941c268eb935713d86065.png)
 
 ![](https://pic.imgdb.cn/item/6619430568eb935713dad399.png)
+
+## 线索二叉树
+
+![](https://pic.imgdb.cn/item/661a0bb168eb935713ebc9aa.png)
+
+> 注意，线索二叉树的数据结构有变
+>
+> ```c
+> typedef struct TreadNode{
+>     ElemType data;
+>     struct ThreadNode *lchild,*rchild;
+>     int lflag,rflag;//tag=0为指向孩子，1为线索
+> }
+> ```
+
+
+
+
+
+![](https://pic.imgdb.cn/item/661a0fad68eb935713f2913a.png)
+
+
+
+> 注意，算法中的
+>
+> 判断条件，有点离谱的
+>
+> 加入左节点的：`p->lchild==NULL`
+>
+> 加入右节点的，不会一开始就用p判断p->rchild==NULL，因为要将pre指向后驱节点
+>
+> 所以判断条件为 `pre!=NULL&&pre->rchild==NULL`
+
+> 最后遍历完，注意处理最后一个节点的**right=NULL**
+
+![](https://pic.imgdb.cn/item/661a12b468eb935713f74cd0.png)
+
+### 先序线索化可能会出现的转圈问题
+
+![](https://pic.imgdb.cn/item/661a16fe68eb935713fdd06f.png)
+
+> **在根节点加入线索后，第一个左边递归需要判断是不是左孩子线索**
+
+![](https://pic.imgdb.cn/item/661a178668eb935713fecd1b.png)
+
+### 中序线索二叉树的遍历
+
+#### 找中序后继
+
+![](https://pic.imgdb.cn/item/661a1b8068eb93571305c489.png)
+
+找中序后继：
+
+1. 找到第一个被中序遍历的节点（就是最左下角）
+   1. while(p->ltag==0)p=p->lchild;
+   2. 意思是找到最后一个左下角不带线索的
+2. 找p的后继结点：
+   1. 如果tag=1（不是叶子节点），右孩子就是线索，就是中序后继
+   2. 如果tag=0（后继有人）要找`右节点的最左下角的`,中序是左根右，左边会递归 然后 再回溯到根输出根
+3. visit
+
+
+
+#### 找中序前驱
+
+![](https://pic.imgdb.cn/item/661a1fcf68eb9357130f0eff.png)
+
+逐层展开法看上去真的挺好用的
+
+### 先序
+
+#### 找先序前驱
+
+![](https://pic.imgdb.cn/item/661a256868eb935713185c2f.png)
+
+#### 后续后驱
+
+![](https://pic.imgdb.cn/item/661a291f68eb935713202bdb.png)
+
+### 总结
+
+![](https://pic.imgdb.cn/item/661a294f68eb935713207e81.png)
+
+不用背，现推
+
+|        | 中序 | 先序  | 后续  |
+| ------ | ---- | ----- | ----- |
+| 找前驱 | √    | **×** | √     |
+| 找后继 | √    | √     | **×** |
+
+​	除非有三叉链表实现找爹
+
+
+
+## 森林
+
+### 存储结构
+
+#### 双亲表示法（顺序）
+
+![](https://pic.imgdb.cn/item/661bcd5968eb9357133afe74.png)
+
+> 优点：找双亲节点方便
+>
+> 缺点，找孩子不方便，要遍历数组
+
+#### 孩子表示法（顺序+链式）
+
+![](https://pic.imgdb.cn/item/661bcde068eb9357133b4bd3.png)
+
+> 优点：找孩子方便
+>
+> 缺点：找爹不行
+
+#### 孩子兄弟表示法（链式）
+
+![](https://pic.imgdb.cn/item/661bce1e68eb9357133b6b41.png)
+
+#### 总结
+
+![](https://pic.imgdb.cn/item/661bce3068eb9357133b74f8.png)
+
+### 森林、树、二叉树的转换
+
+主要为孩子兄弟表示法为核心存储
+
+`左孩子`，`右兄弟`
+
+兄弟`右指针`用糖葫芦串起来
+
+孩子`左指针`挂下面
+
+
+
