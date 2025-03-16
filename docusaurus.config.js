@@ -1,5 +1,5 @@
 const path = require('path')
-const beian = '闽ICP备2020017848号-2'
+const beian = 'AAA'
 
 const math = require('remark-math');
 const katex = require('rehype-katex');
@@ -35,14 +35,7 @@ const config = {
         name: 'keywords',
         content: 'pansyhou',
       },
-      {
-        name: 'keywords',
-        content: 'blog, javascript, typescript, node, react, vue, web',
-      },
-      {
-        name: 'keywords',
-        content: '编程爱好者, Web开发者, 写过爬虫, 学过逆向，现在主攻ts全栈',
-      },
+   
     ],
     docs: {
       sidebar: {
@@ -134,6 +127,50 @@ const config = {
             //   to: 'https://pan.kuizuo.cn',
             // },
           ],
+        },
+        {
+          label: '一生一芯',
+          position: 'right',
+          to: 'docs/ysyx/',
+          // items: [
+          //   {
+          //     label: '预学习阶段',
+          //     to: 'docs/ysyx/pre/',
+          //   },
+
+          //   // {
+          //   //   label: 'ROS',
+          //   //   to: 'docs/ros/',
+          //   // },{
+          //   //   label: 'Android',
+          //   //   to: 'docs/Android/',
+          //   // },
+          //   // {
+          //   //   label: 'ESP32',
+          //   //   to: 'docs/esp32/',
+          //   // },
+            
+          //   // {
+          //   //   label: 'API服务',
+          //   //   to: 'https://api.kuizuo.cn',
+          //   // },
+          //   // {
+          //   //   label: 'JS代码还原',
+          //   //   to: 'https://js-de-obfuscator.kuizuo.cn',
+          //   // },
+          //   // {
+          //   //   label: 'CyberChef加密',
+          //   //   to: 'https://cipher.kuizuo.cn',
+          //   // },
+          //   // {
+          //   //   label: 'Transform',
+          //   //   to: 'https://transform.kuizuo.cn',
+          //   // },
+          //   // {
+          //   //   label: '网盘',
+          //   //   to: 'https://pan.kuizuo.cn',
+          //   // },
+          // ],
         },
         {
           label: '导航',
